@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-import { render } from 'react-dom';
-
 import TypeIt from 'typeit-react';
 
 import Image from '../../src';
@@ -95,7 +93,7 @@ const EASING = 'cubic-bezier(0.7, 0, 0.6, 1)';
 const FIT = 'cover';
 const BG_COLOR = 'inherit';
 
-export default function Demo() {
+export function Demo() {
 	const [currentPhoto, setCurrentPhoto] = React.useState(DEFAULT_IMAGE);
 	const [showPhoto, setShowPhoto] = React.useState(true);
 
@@ -489,10 +487,13 @@ export default function Demo() {
 	);
 }
 
-render(
-	<ThemeProvider theme={theme}>
-		<CssBaseline />
-		<Demo />
-	</ThemeProvider>,
-	document.querySelector('#demo')
-);
+const DemoComponent = () => {
+	return (
+		<ThemeProvider theme={theme}>
+			<CssBaseline />
+			<Demo />
+		</ThemeProvider>
+	);
+};
+
+export default DemoComponent;
