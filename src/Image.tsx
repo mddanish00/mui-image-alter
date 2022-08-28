@@ -141,7 +141,7 @@ const Image = (props: MuiImageProps) => {
 	);
 };
 
-interface MuiImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+export interface MuiImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 	alt?: string;
 	bgColor?: React.CSSProperties['backgroundColor'];
 	className?: string;
