@@ -28,7 +28,7 @@ const Image = (props: MuiImageProps) => {
 		bgColor = 'inherit',
 		wrapperStyle,
 		iconWrapperStyle,
-		wrapperClassName = '',
+		imgClassName = '',
 		iconWrapperClassName = '',
 		duration = 3000,
 		easing = 'cubic-bezier(0.7, 0, 0.6, 1)', // "heavy move" from https://sprawledoctopus.com/easing/,
@@ -120,11 +120,11 @@ const Image = (props: MuiImageProps) => {
 		showLoading) || <CircularProgress size={56} thickness={6} />;
 
 	return (
-		<MuiImageWrapper className={`mui-image-wrapper ${wrapperClassName}`}>
+		<MuiImageWrapper className={`mui-image-wrapper ${className}`}>
 			<Img
 				src={src}
 				alt={alt}
-				className={`mui-image-img ${className}`}
+				className={`mui-image-img ${imgClassName}`}
 				onLoad={handleLoad}
 				onError={handleError}
 				{...rest}
@@ -162,7 +162,7 @@ export interface MuiImageProps extends React.ImgHTMLAttributes<HTMLImageElement>
 	src: string;
 	style?: React.CSSProperties;
 	width?: React.CSSProperties['width'] | number;
-	wrapperClassName?: string;
+	imgClassName?: string;
 	wrapperStyle?: React.CSSProperties;
 	title?: string;
 }
