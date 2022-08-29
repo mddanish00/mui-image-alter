@@ -14,25 +14,23 @@ export default defineConfig({
 			libBuild: {
 				buildOptions: {
 					rollupOptions: {
-						external: [
-							'react',
-							'@mui/material',
-							'@emotion/react',
-							'@emotion/styled',
-						],
+						external: ['react', /@mui\/.*/],
 						output: {
 							globals: {
 								react: 'React',
-								'@mui/material': 'MaterialUI',
-								'@emotion/react': 'emotionReact',
-								'@emotion/styled': 'emotionStyled',
+								'@mui/material/CircularProgress': 'MaterialUI.CircularProgress',
+								'@mui/material/SvgIcon': 'MaterialUI.SvgIcon',
+								'@mui/material/styles/styled': 'MaterialUI.styled',
 							},
 						},
 					},
+					outDir: 'umd',
+					sourcemap: 'hidden',
 					lib: {
 						entry: resolve(__dirname, 'src/index.ts'),
 						name: 'MuiImage',
-						fileName: (format) => `mui-image.${format}.js`,
+						formats: ['umd'],
+						fileName: (format) => `mui-image.js`,
 					},
 				},
 			},

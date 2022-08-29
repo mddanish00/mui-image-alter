@@ -1,20 +1,20 @@
 {
 	"name": "mui-image",
-	"version": "1.0.8",
+	"version": "1.0.7",
 	"description": "Display images as per the Material guidelines. For React apps using Material-UI v5.",
 	"main": "lib/index.js",
 	"module": "es/index.js",
 	"files": [
 		"es",
 		"lib",
-		"dist"
+		"umd"
 	],
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
 		"preview": "vite preview",
 		"size": "size-limit",
-		"clean": "rimraf dist es lib",
+		"clean": "rimraf dist es lib umd",
 		"prepare": "npm run build"
 	},
 	"peerDependencies": {
@@ -39,7 +39,7 @@
 	},
 	"size-limit": [
 		{
-			"path": "lib/index.js"
+			"path": "es/index.js"
 		}
 	],
 	"author": "Miracutor",
