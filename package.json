@@ -12,6 +12,7 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
+		"demo-build": "vite --config vite.democonfig.ts build",
 		"preview": "vite preview",
 		"size": "size-limit",
 		"clean": "rimraf dist es lib umd",
