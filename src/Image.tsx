@@ -141,6 +141,13 @@ const Image = (props: MuiImageProps) => {
 	);
 };
 
+/*Based on @types/mui-images with some my own modification
+Type definitions for mui-image 1.0
+Project: https://github.com/benmneb/mui-image
+Definitions by: benmneb <https://github.com/benmneb>
+Definitions: https://github.com/DefinitelyTyped/mui-image
+(With a little help from Natalia <https://github.com/CodeMeNatalie>)
+Licensed under MIT License.*/
 export interface MuiImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 	alt?: string;
 	bgColor?: React.CSSProperties['backgroundColor'];
