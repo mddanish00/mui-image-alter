@@ -11,34 +11,32 @@ const BrokenImageIcon = (props: SvgIconProps) => (
 	</SvgIcon>
 );
 
-const Image = (props: MuiImageProps) => {
-	const {
-		src,
-		alt = '',
-		height = '100%',
-		width = '100%',
-		position = 'relative',
-		fit = 'cover',
-		style,
-		className = '',
-		showLoading = false,
-		errorIcon = true,
-		shift = false,
-		distance = 100,
-		shiftDuration = null,
-		bgColor = 'inherit',
-		wrapperStyle,
-		iconWrapperStyle,
-		imgClassName = '',
-		iconWrapperClassName = '',
-		duration = 3000,
-		easing = 'cubic-bezier(0.7, 0, 0.6, 1)', // "heavy move" from https://sprawledoctopus.com/easing/,
-		onLoad: onLoadProp,
-		onError: onErrorProp,
-		sx,
-		...rest
-	} = props;
-
+const Image = ({
+	src,
+	alt = '',
+	height = '100%',
+	width = '100%',
+	position = 'relative',
+	fit = 'cover',
+	style,
+	className = '',
+	showLoading = false,
+	errorIcon = true,
+	shift = false,
+	distance = 100,
+	shiftDuration = undefined,
+	bgColor = 'inherit',
+	wrapperStyle,
+	iconWrapperStyle,
+	imgClassName = '',
+	iconWrapperClassName = '',
+	duration = 3000,
+	easing = 'cubic-bezier(0.7, 0, 0.6, 1)', // "heavy move" from https://sprawledoctopus.com/easing/,
+	onLoad: onLoadProp,
+	onError: onErrorProp,
+	sx,
+	...rest
+}: MuiImageProps) => {
 	const [loaded, setLoaded] = React.useState(false);
 	const [error, setError] = React.useState(false);
 
@@ -61,59 +59,6 @@ const Image = (props: MuiImageProps) => {
 			  }
 			: {};
 
-	const Img = React.memo(
-		styled('img')({
-			'@keyframes materialize': {
-				'0%': {
-					filter: 'saturate(20%) contrast(50%) brightness(120%)',
-				},
-				'75%': {
-					filter: 'saturate(60%) contrast(100%) brightness(100%)',
-				},
-				'100%': {
-					filter: 'saturate(100%) contrast(100%) brightness(100%)',
-				},
-			},
-			position,
-			width: '100%',
-			height: '100%',
-			objectFit: fit,
-			transitionProperty: `${Boolean(shift) ? `${shift}, ` : ''}opacity`,
-			transitionDuration: `${
-				Boolean(shift) ? `${shiftDuration || duration * 0.3}ms, ` : ''
-			}${duration / 2}ms`,
-			transitionTimingFunction: easing,
-			opacity: loaded ? 1 : 0,
-			animation: loaded ? `materialize ${duration}ms 1 ${easing}` : '',
-			...(Boolean(shift) && shiftStyles),
-			...style,
-		})
-	);
-
-	const MuiImageWrapper = React.memo(
-		styled('div')({
-			width,
-			height,
-			display: 'flex',
-			justifyContent: 'center',
-			alignItems: 'center',
-			backgroundColor: bgColor,
-			...wrapperStyle,
-		})
-	);
-
-	const MuiImageIconWrapper = React.memo(
-		styled('div')({
-			width: '100%',
-			marginLeft: '-100%',
-			display: 'flex',
-			justifyContent: 'center',
-			alignItems: 'center',
-			opacity: loaded ? 0 : 1,
-			...iconWrapperStyle,
-		})
-	);
-
 	const showErrorIcon = (typeof errorIcon !== 'boolean' && errorIcon) || (
 		<BrokenImageIcon style={{ fontSize: 56, color: '#bdbdbd' }} /> // MUI grey[400]
 	);
@@ -122,18 +67,36 @@ const Image = (props: MuiImageProps) => {
 		showLoading) || <CircularProgress size={56} thickness={6} />;
 
 	return (
-		<MuiImageWrapper className={`mui-image-wrapper ${className}`} sx={sx}>
+		<MuiImageWrapper
+			className={`mui-image-wrapper ${className}`}
+			sx={sx}
+			style={wrapperStyle}
+			width={width}
+			height={height}
+			bgColor={bgColor}
+		>
 			<Img
 				src={src}
 				alt={alt}
+				style={style}
 				className={`mui-image-img ${imgClassName}`}
 				onLoad={handleLoad}
 				onError={handleError}
+				position={position}
+				fit={fit}
+				shift={shift}
+				shiftDuration={shiftDuration}
+				shiftStyles={shiftStyles}
+				duration={duration}
+				easing={easing}
+				loaded={loaded}
 				{...rest}
 			/>
 			{(Boolean(showLoading) || Boolean(errorIcon)) && (
 				<MuiImageIconWrapper
 					className={`mui-image-iconWrapper ${iconWrapperClassName}`}
+					style={iconWrapperStyle}
+					loaded={loaded}
 				>
 					{Boolean(errorIcon) && error && showErrorIcon}
 					{Boolean(showLoading) && !error && !loaded && loadingIndicator}
@@ -142,6 +105,79 @@ const Image = (props: MuiImageProps) => {
 		</MuiImageWrapper>
 	);
 };
+
+interface ImgRootProps {
+	position: React.CSSProperties['position'];
+	fit: React.CSSProperties['objectFit'];
+	shift?: 'left' | 'right' | 'top' | 'bottom' | false | null;
+	shiftDuration?: number;
+	shiftStyles: {
+		[x: string]: string | number;
+	};
+	duration: number;
+	easing: React.CSSProperties['transitionTimingFunction'];
+	loaded: boolean;
+}
+
+const Img = React.memo(
+	styled('img')<ImgRootProps>((props) => ({
+		'@keyframes materialize': {
+			'0%': {
+				filter: 'saturate(20%) contrast(50%) brightness(120%)',
+			},
+			'75%': {
+				filter: 'saturate(60%) contrast(100%) brightness(100%)',
+			},
+			'100%': {
+				filter: 'saturate(100%) contrast(100%) brightness(100%)',
+			},
+		},
+		position: props.position,
+		width: '100%',
+		height: '100%',
+		objectFit: props.fit,
+		transitionProperty: `${
+			Boolean(props.shift) ? `${props.shift}, ` : ''
+		}opacity`,
+		transitionDuration: `${
+			Boolean(props.shift)
+				? `${props.shiftDuration || props.duration * 0.3}ms, `
+				: ''
+		}${props.duration / 2}ms`,
+		transitionTimingFunction: props.easing,
+		opacity: props.loaded ? 1 : 0,
+		animation: props.loaded
+			? `materialize ${props.duration}ms 1 ${props.easing}`
+			: '',
+		...(Boolean(props.shift) && props.shiftStyles),
+	}))
+);
+
+const MuiImageWrapper = React.memo(
+	styled('div')<{
+		width?: React.CSSProperties['width'] | number;
+		height?: React.CSSProperties['height'] | number;
+		bgColor?: React.CSSProperties['backgroundColor'];
+	}>((props) => ({
+		width: props.width,
+		height: props.height,
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: props.bgColor,
+	}))
+);
+
+const MuiImageIconWrapper = React.memo(
+	styled('div')<{ loaded: boolean }>((props) => ({
+		width: '100%',
+		marginLeft: '-100%',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		opacity: props.loaded ? 0 : 1,
+	}))
+);
 
 /*Based on @types/mui-images with some my own modification
 Type definitions for mui-image 1.0
