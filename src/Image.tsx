@@ -3,6 +3,7 @@ import React from 'react';
 import styled from '@mui/material/styles/styled';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import CircularProgress from '@mui/material/CircularProgress';
+import { SxProps, Theme } from '@mui/material/styles';
 
 const BrokenImageIcon = (props: SvgIconProps) => (
 	<SvgIcon {...props}>
@@ -34,6 +35,7 @@ const Image = (props: MuiImageProps) => {
 		easing = 'cubic-bezier(0.7, 0, 0.6, 1)', // "heavy move" from https://sprawledoctopus.com/easing/,
 		onLoad: onLoadProp,
 		onError: onErrorProp,
+		sx,
 		...rest
 	} = props;
 
@@ -120,7 +122,7 @@ const Image = (props: MuiImageProps) => {
 		showLoading) || <CircularProgress size={56} thickness={6} />;
 
 	return (
-		<MuiImageWrapper className={`mui-image-wrapper ${className}`}>
+		<MuiImageWrapper className={`mui-image-wrapper ${className}`} sx={sx}>
 			<Img
 				src={src}
 				alt={alt}
@@ -148,7 +150,8 @@ Definitions by: benmneb <https://github.com/benmneb>
 Definitions: https://github.com/DefinitelyTyped/mui-image
 (With a little help from Natalia <https://github.com/CodeMeNatalie>)
 Licensed under MIT License.*/
-export interface MuiImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+export interface MuiImageProps
+	extends React.ImgHTMLAttributes<HTMLImageElement> {
 	alt?: string;
 	bgColor?: React.CSSProperties['backgroundColor'];
 	className?: string;
@@ -172,6 +175,7 @@ export interface MuiImageProps extends React.ImgHTMLAttributes<HTMLImageElement>
 	imgClassName?: string;
 	wrapperStyle?: React.CSSProperties;
 	title?: string;
+	sx?: SxProps<Theme>;
 }
 
 export default Image;
