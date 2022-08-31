@@ -68,7 +68,7 @@ const Image = ({
 
 	return (
 		<MuiImageWrapper
-			className={`mui-image-wrapper ${className}`}
+			className={buildName('mui-image-wrapper', className)}
 			sx={sx}
 			style={wrapperStyle}
 			width={width}
@@ -79,7 +79,7 @@ const Image = ({
 				src={src}
 				alt={alt}
 				style={style}
-				className={`mui-image-img ${imgClassName}`}
+				className={buildName('mui-image-img', imgClassName)}
 				onLoad={handleLoad}
 				onError={handleError}
 				position={position}
@@ -94,7 +94,10 @@ const Image = ({
 			/>
 			{(Boolean(showLoading) || Boolean(errorIcon)) && (
 				<MuiImageIconWrapper
-					className={`mui-image-iconWrapper ${iconWrapperClassName}`}
+					className={buildName(
+						'mui-image-iconWrapper',
+						iconWrapperClassName
+					)}
 					style={iconWrapperStyle}
 					loaded={loaded}
 				>
@@ -105,6 +108,11 @@ const Image = ({
 		</MuiImageWrapper>
 	);
 };
+
+// Utility functions
+const checkProps = (value: string, arr: string[]) => !arr.includes(value);
+const buildName = (base: string, append: string) =>
+	base.concat(append ? ` ${append}` : '');
 
 interface ImgRootProps {
 	position: React.CSSProperties['position'];
@@ -119,8 +127,21 @@ interface ImgRootProps {
 	loaded: boolean;
 }
 
+// Custom component using styled
 const Img = React.memo(
-	styled('img')<ImgRootProps>((props) => ({
+	styled('img', {
+		shouldForwardProp: (prop) =>
+			checkProps(prop.toString(), [
+				'position',
+				'fit',
+				'shift',
+				'shiftDuration',
+				'shiftStyles',
+				'duration',
+				'easing',
+				'loaded',
+			]),
+	})<ImgRootProps>((props) => ({
 		'@keyframes materialize': {
 			'0%': {
 				filter: 'saturate(20%) contrast(50%) brightness(120%)',
@@ -154,7 +175,10 @@ const Img = React.memo(
 );
 
 const MuiImageWrapper = React.memo(
-	styled('div')<{
+	styled('div', {
+		shouldForwardProp: (prop) =>
+			checkProps(prop.toString(), ['width', 'height', 'bgColor']),
+	})<{
 		width?: React.CSSProperties['width'] | number;
 		height?: React.CSSProperties['height'] | number;
 		bgColor?: React.CSSProperties['backgroundColor'];
@@ -169,7 +193,9 @@ const MuiImageWrapper = React.memo(
 );
 
 const MuiImageIconWrapper = React.memo(
-	styled('div')<{ loaded: boolean }>((props) => ({
+	styled('div', {
+		shouldForwardProp: (prop) => prop !== 'loaded',
+	})<{ loaded: boolean }>((props) => ({
 		width: '100%',
 		marginLeft: '-100%',
 		display: 'flex',
