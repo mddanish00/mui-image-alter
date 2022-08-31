@@ -32,7 +32,8 @@ const theme = createTheme({
 		fontFamily: ['Fira Code', 'monospace'].join(','),
 	},
 	palette: {
-		primary: { main: '#2979ff' },
+		primary: { main: '#9370DB' },
+		secondary: { main: '#BA55D3' },
 	},
 });
 
@@ -154,6 +155,7 @@ export function Demo() {
 			<AppBar
 				elevation={0}
 				position="fixed"
+				color="secondary"
 				sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
 			>
 				<Toolbar>
@@ -176,7 +178,7 @@ export function Demo() {
 							getBeforeInit={(instance) => {
 								instance
 									.pause(3500)
-									.type('npm install mui-image')
+									.type('npm install https://github.com/Miracutor/mui-image')
 									.pause(1500)
 									.delete()
 									.type("import Image from 'mui-image'");
