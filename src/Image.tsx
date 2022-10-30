@@ -11,103 +11,106 @@ const BrokenImageIcon = (props: SvgIconProps) => (
 	</SvgIcon>
 );
 
-const Image = ({
-	src,
-	alt = '',
-	height = '100%',
-	width = '100%',
-	position = 'relative',
-	fit = 'cover',
-	style,
-	className = '',
-	showLoading = false,
-	errorIcon = true,
-	shift = false,
-	distance = 100,
-	shiftDuration = undefined,
-	bgColor = 'inherit',
-	wrapperStyle,
-	iconWrapperStyle,
-	imgClassName = '',
-	iconWrapperClassName = '',
-	duration = 3000,
-	easing = 'cubic-bezier(0.7, 0, 0.6, 1)', // "heavy move" from https://sprawledoctopus.com/easing/,
-	onLoad: onLoadProp,
-	onError: onErrorProp,
-	sx,
-	...rest
-}: MuiImageProps) => {
-	const [loaded, setLoaded] = React.useState(false);
-	const [error, setError] = React.useState(false);
+const Image = React.forwardRef<HTMLImageElement, MuiImageProps>(
+	(
+		{
+			src,
+			alt = '',
+			height = '100%',
+			width = '100%',
+			position = 'relative',
+			fit = 'cover',
+			style,
+			className = '',
+			showLoading = false,
+			errorIcon = true,
+			shift = false,
+			distance = 100,
+			shiftDuration = undefined,
+			bgColor = 'inherit',
+			wrapperStyle,
+			iconWrapperStyle,
+			imgClassName = '',
+			iconWrapperClassName = '',
+			duration = 3000,
+			easing = 'cubic-bezier(0.7, 0, 0.6, 1)', // "heavy move" from https://sprawledoctopus.com/easing/,
+			onLoad: onLoadProp,
+			onError: onErrorProp,
+			sx,
+			...rest
+		}: MuiImageProps,
+		ref
+	) => {
+		const [loaded, setLoaded] = React.useState(false);
+		const [error, setError] = React.useState(false);
 
-	const handleLoad = () => {
-		setLoaded(true);
-		setError(false);
-		if (onLoadProp) onLoadProp();
-	};
+		const handleLoad = () => {
+			setLoaded(true);
+			setError(false);
+			if (onLoadProp) onLoadProp();
+		};
 
-	const handleError = () => {
-		setError(true);
-		setLoaded(false);
-		if (onErrorProp) onErrorProp();
-	};
+		const handleError = () => {
+			setError(true);
+			setLoaded(false);
+			if (onErrorProp) onErrorProp();
+		};
 
-	const shiftStyles =
-		shift !== undefined && shift !== false && shift !== null
-			? {
-					[shift]: loaded ? 0 : distance,
-			  }
-			: {};
+		const shiftStyles =
+			shift !== undefined && shift !== false && shift !== null
+				? {
+						[shift]: loaded ? 0 : distance,
+				  }
+				: {};
 
-	const showErrorIcon = (typeof errorIcon !== 'boolean' && errorIcon) || (
-		<BrokenImageIcon style={{ fontSize: 56, color: '#bdbdbd' }} /> // MUI grey[400]
-	);
+		const showErrorIcon = (typeof errorIcon !== 'boolean' && errorIcon) || (
+			<BrokenImageIcon style={{ fontSize: 56, color: '#bdbdbd' }} /> // MUI grey[400]
+		);
 
-	const loadingIndicator = (typeof showLoading !== 'boolean' &&
-		showLoading) || <CircularProgress size={56} thickness={6} />;
+		const loadingIndicator = (typeof showLoading !== 'boolean' &&
+			showLoading) || <CircularProgress size={56} thickness={6} />;
 
-	return (
-		<MuiImageWrapper
-			className={buildName('mui-image-wrapper', className)}
-			sx={sx}
-			style={wrapperStyle}
-			width={width}
-			height={height}
-			bgColor={bgColor}
-		>
-			<Img
-				src={src}
-				alt={alt}
-				style={style}
-				className={buildName('mui-image-img', imgClassName)}
-				onLoad={handleLoad}
-				onError={handleError}
-				position={position}
-				fit={fit}
-				shift={shift}
-				shiftDuration={shiftDuration}
-				shiftStyles={shiftStyles}
-				duration={duration}
-				easing={easing}
-				loaded={loaded}
-				{...rest}
-			/>
-			{(Boolean(showLoading) || Boolean(errorIcon)) && (
-				<MuiImageIconWrapper
-					className={buildName(
-						'mui-image-iconWrapper',
-						iconWrapperClassName
-					)}
-					style={iconWrapperStyle}
+		return (
+			<MuiImageWrapper
+				className={buildName('mui-image-wrapper', className)}
+				sx={sx}
+				style={wrapperStyle}
+				width={width}
+				height={height}
+				bgColor={bgColor}
+			>
+				<Img
+					ref={ref}
+					src={src}
+					alt={alt}
+					style={style}
+					className={buildName('mui-image-img', imgClassName)}
+					onLoad={handleLoad}
+					onError={handleError}
+					position={position}
+					fit={fit}
+					shift={shift}
+					shiftDuration={shiftDuration}
+					shiftStyles={shiftStyles}
+					duration={duration}
+					easing={easing}
 					loaded={loaded}
-				>
-					{Boolean(errorIcon) && error && showErrorIcon}
-					{Boolean(showLoading) && !error && !loaded && loadingIndicator}
-				</MuiImageIconWrapper>
-			)}
-		</MuiImageWrapper>
-	);
-};
+					{...rest}
+				/>
+				{(Boolean(showLoading) || Boolean(errorIcon)) && (
+					<MuiImageIconWrapper
+						className={buildName('mui-image-iconWrapper', iconWrapperClassName)}
+						style={iconWrapperStyle}
+						loaded={loaded}
+					>
+						{Boolean(errorIcon) && error && showErrorIcon}
+						{Boolean(showLoading) && !error && !loaded && loadingIndicator}
+					</MuiImageIconWrapper>
+				)}
+			</MuiImageWrapper>
+		);
+	}
+);
 
 // Utility functions
 const checkProps = (value: string, arr: string[]) => !arr.includes(value);
