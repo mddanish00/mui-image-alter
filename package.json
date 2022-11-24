@@ -16,7 +16,8 @@
 		"preview": "vite preview",
 		"size": "size-limit",
 		"clean": "rimraf dist es lib umd",
-		"prepare": "npm run build"
+		"prepare": "npm run build",
+		"postversion": "git push && git push --tags"
 	},
 	"peerDependencies": {
 		"@emotion/react": "^11.4.1",
