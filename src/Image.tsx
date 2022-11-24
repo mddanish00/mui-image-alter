@@ -75,14 +75,14 @@ const Image = React.forwardRef<HTMLImageElement, MuiImageProps>(
 				className={buildName('mui-image-wrapper', className)}
 				sx={sx}
 				style={wrapperStyle}
-				width={width}
-				height={height}
 				bgColor={bgColor}
 			>
 				<Img
 					ref={ref}
 					src={src}
 					alt={alt}
+					width={width}
+					height={height}
 					style={style}
 					className={buildName('mui-image-img', imgClassName)}
 					onLoad={handleLoad}
@@ -157,8 +157,6 @@ const Img = React.memo(
 			},
 		},
 		position: props.position,
-		width: '100%',
-		height: '100%',
 		objectFit: props.fit,
 		transitionProperty: `${
 			Boolean(props.shift) ? `${props.shift}, ` : ''
@@ -179,15 +177,10 @@ const Img = React.memo(
 
 const MuiImageWrapper = React.memo(
 	styled('div', {
-		shouldForwardProp: (prop) =>
-			checkProps(prop.toString(), ['width', 'height', 'bgColor']),
+		shouldForwardProp: (prop) => prop !== 'bgColor',
 	})<{
-		width?: React.CSSProperties['width'] | number;
-		height?: React.CSSProperties['height'] | number;
 		bgColor?: React.CSSProperties['backgroundColor'];
 	}>((props) => ({
-		width: props.width,
-		height: props.height,
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
