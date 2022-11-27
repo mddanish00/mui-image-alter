@@ -143,6 +143,7 @@ const Img = React.memo(
 				'duration',
 				'easing',
 				'loaded',
+				'sx',
 			]),
 	})<ImgRootProps>((props) => ({
 		'@keyframes materialize': {
@@ -177,7 +178,7 @@ const Img = React.memo(
 
 const MuiImageWrapper = React.memo(
 	styled('div', {
-		shouldForwardProp: (prop) => prop !== 'bgColor',
+		shouldForwardProp: (prop) => checkProps(prop.toString(), ['bgColor', 'sx']),
 	})<{
 		bgColor?: React.CSSProperties['backgroundColor'];
 	}>((props) => ({
