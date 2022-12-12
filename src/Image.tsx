@@ -3,7 +3,9 @@ import React from 'react';
 import styled from '@mui/material/styles/styled';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import CircularProgress from '@mui/material/CircularProgress';
-import { SxProps, Theme } from '@mui/material/styles';
+
+import clsx from 'clsx';
+import { ImageProps, MuiImage, ImageTypeMap } from './Image.types';
 
 const BrokenImageIcon = (props: SvgIconProps) => (
 	<SvgIcon {...props}>
@@ -11,8 +13,10 @@ const BrokenImageIcon = (props: SvgIconProps) => (
 	</SvgIcon>
 );
 
-const Image = React.forwardRef<HTMLImageElement, MuiImageProps>(
-	(
+const Image = React.forwardRef(
+	<
+		BaseComponentType extends React.ElementType = ImageTypeMap['defaultComponent']
+	>(
 		{
 			src,
 			alt = '',
@@ -38,8 +42,8 @@ const Image = React.forwardRef<HTMLImageElement, MuiImageProps>(
 			onError: onErrorProp,
 			sx,
 			...rest
-		}: MuiImageProps,
-		ref
+		}: ImageProps<BaseComponentType>,
+		ref: React.ForwardedRef<any>
 	) => {
 		const [loaded, setLoaded] = React.useState(false);
 		const [error, setError] = React.useState(false);
@@ -72,19 +76,19 @@ const Image = React.forwardRef<HTMLImageElement, MuiImageProps>(
 
 		return (
 			<MuiImageWrapper
-				className={buildName('mui-image-wrapper', className)}
+				className={clsx('mui-image-wrapper', className)}
 				sx={sx}
 				style={wrapperStyle}
 				bgColor={bgColor}
 			>
-				<Img
+				<MuiImageRoot
 					ref={ref}
 					src={src}
 					alt={alt}
 					width={width}
 					height={height}
 					style={style}
-					className={buildName('mui-image-img', imgClassName)}
+					className={clsx('mui-image-img', imgClassName)}
 					onLoad={handleLoad}
 					onError={handleError}
 					position={position}
@@ -99,7 +103,7 @@ const Image = React.forwardRef<HTMLImageElement, MuiImageProps>(
 				/>
 				{(Boolean(showLoading) || Boolean(errorIcon)) && (
 					<MuiImageIconWrapper
-						className={buildName('mui-image-iconWrapper', iconWrapperClassName)}
+						className={clsx('mui-image-iconWrapper', iconWrapperClassName)}
 						style={iconWrapperStyle}
 						loaded={loaded}
 					>
@@ -110,12 +114,10 @@ const Image = React.forwardRef<HTMLImageElement, MuiImageProps>(
 			</MuiImageWrapper>
 		);
 	}
-);
+) as MuiImage<ImageTypeMap>;
 
 // Utility functions
 const checkProps = (value: string, arr: string[]) => !arr.includes(value);
-const buildName = (base: string, append: string) =>
-	base.concat(append ? ` ${append}` : '');
 
 interface ImgRootProps {
 	position: React.CSSProperties['position'];
@@ -131,7 +133,7 @@ interface ImgRootProps {
 }
 
 // Custom component using styled
-const Img = React.memo(
+const MuiImageRoot = React.memo(
 	styled('img', {
 		shouldForwardProp: (prop) =>
 			checkProps(prop.toString(), [
@@ -201,40 +203,5 @@ const MuiImageIconWrapper = React.memo(
 		opacity: props.loaded ? 0 : 1,
 	}))
 );
-
-/*Based on @types/mui-images with some my own modification
-Type definitions for mui-image 1.0
-Project: https://github.com/benmneb/mui-image
-Definitions by: benmneb <https://github.com/benmneb>
-Definitions: https://github.com/DefinitelyTyped/mui-image
-(With a little help from Natalia <https://github.com/CodeMeNatalie>)
-Licensed under MIT License.*/
-export interface MuiImageProps
-	extends React.ImgHTMLAttributes<HTMLImageElement> {
-	alt?: string;
-	bgColor?: React.CSSProperties['backgroundColor'];
-	className?: string;
-	distance?: string | number;
-	duration?: number;
-	easing?: React.CSSProperties['transitionTimingFunction'];
-	errorIcon?: boolean | React.ReactNode;
-	fit?: React.CSSProperties['objectFit'];
-	height?: React.CSSProperties['height'] | number;
-	iconWrapperClassName?: string;
-	iconWrapperStyle?: React.CSSProperties;
-	onError?: (...args: any[]) => void;
-	onLoad?: (...args: any[]) => void;
-	position?: React.CSSProperties['position'];
-	shift?: 'left' | 'right' | 'top' | 'bottom' | false | null;
-	shiftDuration?: number;
-	showLoading?: boolean | React.ReactNode;
-	src: string;
-	style?: React.CSSProperties;
-	width?: React.CSSProperties['width'] | number;
-	imgClassName?: string;
-	wrapperStyle?: React.CSSProperties;
-	title?: string;
-	sx?: SxProps<Theme>;
-}
 
 export default Image;
