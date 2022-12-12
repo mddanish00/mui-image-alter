@@ -54,5 +54,8 @@
 		"material design",
 		"react",
 		"loading image"
-	]
+	],
+	"dependencies": {
+		"clsx": "^1.2.1"
+	}
 }
