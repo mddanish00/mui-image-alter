@@ -48,17 +48,17 @@ const Image = React.forwardRef(
 		const [loaded, setLoaded] = React.useState(false);
 		const [error, setError] = React.useState(false);
 
-		const handleLoad = () => {
+		const handleLoad = React.useCallback(() => {
 			setLoaded(true);
 			setError(false);
 			if (onLoadProp) onLoadProp();
-		};
+		}, [onLoadProp]);
 
-		const handleError = () => {
+		const handleError = React.useCallback(() => {
 			setError(true);
 			setLoaded(false);
 			if (onErrorProp) onErrorProp();
-		};
+		}, [onErrorProp]);
 
 		const shiftStyles =
 			shift !== undefined && shift !== false && shift !== null
