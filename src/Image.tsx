@@ -20,8 +20,6 @@ const Image = React.forwardRef(
 		{
 			src,
 			alt = '',
-			height = '100%',
-			width = '100%',
 			position = 'relative',
 			fit = 'cover',
 			style,
@@ -41,6 +39,7 @@ const Image = React.forwardRef(
 			onLoad: onLoadProp,
 			onError: onErrorProp,
 			sx,
+			component = 'img',
 			...rest
 		}: ImageProps<BaseComponentType>,
 		ref: React.ForwardedRef<any>
@@ -68,7 +67,7 @@ const Image = React.forwardRef(
 				: {};
 
 		const showErrorIcon = (typeof errorIcon !== 'boolean' && errorIcon) || (
-			<BrokenImageIcon style={{ fontSize: 56, color: '#bdbdbd' }} /> // MUI grey[400]
+			<BrokenImageIcon sx={{ fontSize: 56, color: '#bdbdbd' }} /> // MUI grey[400]
 		);
 
 		const loadingIndicator = (typeof showLoading !== 'boolean' &&
@@ -83,10 +82,9 @@ const Image = React.forwardRef(
 			>
 				<MuiImageRoot
 					ref={ref}
+					as={component}
 					src={src}
 					alt={alt}
-					width={width}
-					height={height}
 					style={style}
 					className={clsx('mui-image-img', imgClassName)}
 					onLoad={handleLoad}
@@ -146,6 +144,7 @@ const MuiImageRoot = React.memo(
 				'easing',
 				'loaded',
 				'sx',
+				'as',
 			]),
 	})<ImgRootProps>((props) => ({
 		'@keyframes materialize': {
