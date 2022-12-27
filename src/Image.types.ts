@@ -24,9 +24,8 @@ export type ImageTypeMap<P = {}, D extends React.ElementType = 'img'> = {
 	distance?: string | number;
 	duration?: number;
 	easing?: React.CSSProperties['transitionTimingFunction'];
-	errorIcon?: boolean | React.ReactNode;
+	errorIcon?: boolean | React.ReactElement;
 	fit?: React.CSSProperties['objectFit'];
-	height?: React.CSSProperties['height'] | number;
 	iconWrapperClassName?: string;
 	iconWrapperStyle?: React.CSSProperties;
 	onError?: (...args: any[]) => void;
@@ -34,10 +33,9 @@ export type ImageTypeMap<P = {}, D extends React.ElementType = 'img'> = {
 	position?: React.CSSProperties['position'];
 	shift?: 'left' | 'right' | 'top' | 'bottom' | false | null;
 	shiftDuration?: number;
-	showLoading?: boolean | React.ReactNode;
+	showLoading?: boolean | React.ReactElement;
 	src: string;
 	style?: React.CSSProperties;
-	width?: React.CSSProperties['width'] | number;
 	imgClassName?: string;
 	wrapperStyle?: React.CSSProperties;
 	title?: string;
@@ -50,7 +48,7 @@ export type ImageTypeMap<P = {}, D extends React.ElementType = 'img'> = {
 };
 
 
-export type MuiImage<M extends OverridableTypeMap> = OverridableComponent<ImageTypeMap<M>>;
+export type MuiImage<M extends OverridableTypeMap> = OverridableComponent<ImageTypeMap>;
 
 export type ImageProps<
   D extends React.ElementType = ImageTypeMap['defaultComponent'],
