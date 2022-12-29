@@ -23,7 +23,7 @@ jobs:
           echo node version "$(node -v)"
           echo npm version "$(npm --version)"
           npm install
-          npm run demo-build
+          npm run build:demo
       
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.1
