@@ -32,7 +32,7 @@ const Image = React.forwardRef(
 			bgColor = 'inherit',
 			wrapperStyle,
 			iconWrapperStyle,
-			imgClassName = '',
+			wrapperClassName = '',
 			iconWrapperClassName = '',
 			duration = 3000,
 			easing = 'cubic-bezier(0.7, 0, 0.6, 1)', // "heavy move" from https://sprawledoctopus.com/easing/,
@@ -75,7 +75,7 @@ const Image = React.forwardRef(
 
 		return (
 			<MuiImageWrapper
-				className={clsx('mui-image-wrapper', className)}
+				className={clsx('mui-image-wrapper', wrapperClassName)}
 				sx={sx}
 				style={wrapperStyle}
 				bgColor={bgColor}
@@ -86,7 +86,7 @@ const Image = React.forwardRef(
 					src={src}
 					alt={alt}
 					style={style}
-					className={clsx('mui-image-img', imgClassName)}
+					className={clsx('mui-image-img', className)}
 					onLoad={handleLoad}
 					onError={handleError}
 					position={position}

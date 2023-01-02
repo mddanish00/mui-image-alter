@@ -36,7 +36,7 @@ export type ImageTypeMap<P = {}, D extends React.ElementType = 'img'> = {
 	showLoading?: boolean | React.ReactElement;
 	src: string;
 	style?: React.CSSProperties;
-	imgClassName?: string;
+	wrapperClassName?: string;
 	wrapperStyle?: React.CSSProperties;
 	title?: string;
     /**
