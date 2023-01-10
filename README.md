@@ -27,28 +27,30 @@ Changes in this fork:
 
 - Rewritten fully in Typescript with types built-in.
 
-- Better compability with MUI's styled and sx prop.
-
-- Use Vite instead of nwb for development and building the library for fast and better developer experince for me!
+- Use Vite instead of nwb for development and building the library for fast and better developer experience for me!
 
 - A lighter UMD build by externalize React and Material UI library. (You need both React and Material UI UMD to use this component.)
 
-- Enable import component props for extending props to provide support for Component composition.
+- Put all styles in styled instead of using style prop for better compability with MUI's styled.
+
+- Add component (only works for `img` and `img`-derived HTML element) and sx prop from official MUI.
+
+- Height and width prop forwarded to root `img` element instead of using CSS to set height and width.
 
 ## Simple Q & A
 
 - **Q**: Why you created this fork?  
-  **A**: MUI's styled don't work very well with the original mui-image because className pointed to root img Element. Some CSS cannot be change or it will break styling. So, I want to modify a little bit... And I end up doing at lot.  
+  **A**: MUI's styled don't work very well with the original mui-image because some of default styling and it use style prop instead of using styled to set some of the styling. So, I want to modify a little bit... And I end up doing at lot.  
   Originally, I want to just post an issue for this but I am suck in comunication.
 
-- **Q**: Are you not going to publish on NPM?  
+- **Q**: Are you not going to publish on npm?  
   **A**: Probably not. I don't think there is any demand on this. I am just weird. Maybe if someone post an issue about this and 100 person comment on that issue, maybe I will do it.
 
 - **Q**: Why you change nwb to Vite?  
   **A**: I just wanted to fork for my own benefit. So, I thought maybe I can write this in TypeScript... but it don't work with nwb. I am so frustrated that I cannot find how to do it and try migarating to Vite instead. It took a lot of work but never thought it work so well...
-  Maybe there is actually a way but I never regret that.
+  Maybe there is actually a way to use Typescript with nwb but I never regret switching to Vite.
 
-  Vite is so fast!!!
+  Vite is so fast!!!😍
 
 - **Q**: Will you intergrate changes from the original project?  
   **A**: Yeah. As many as I can.
@@ -82,13 +84,6 @@ You can use `mui-image` like a regular image.
 ```
 
 Except... it will fade and animate in as the Material guidelines recommend. 🤯
-
-Add a `height` and/or `width` to reserve space on the page for the image and avoid uncomforable content shifts as your picture loads. They both default to 100% of the parent you place them in and accept any valid CSS property. Numbers are converted to pixels.
-
-```jsx
-<Image src="my-image.png" width={500} />
-<Image src="my-image.png" height="90vh" />
-```
 
 Apply the `showLoading` prop to add a progress indicator to let your fans know something amazing is coming. You can use the default MUI indicator or bring your own. 😎
 
@@ -129,8 +124,6 @@ And of course, you can style `mui-image` like you would a regular image... but w
 
 If you want to get fancy 💃 you can also add inline styles and additional `className`'s to the root wrapper `div` and loading/error icon wrapper `div`, or just target their default `className`'s. This allows for complete customisation of every aspect of the component.
 
-In this fork, className is pointed to Wrapper className and imgClassName is pointed to root img element.
-
 ### Fork Exclusive Usage
 
 With this fork, you can use MUI's styled normally like this. More info on MUI's [official doccumentation](https://mui.com/system/styled/).
@@ -150,33 +143,70 @@ const customImage = styled(Image)({
 You also can use composition to create custom components.
 
 ```ts
-import Image, { MuiImageProps } from 'mui-image';
+import Image, { ImageProps } from 'mui-image';
 
-const customImage = ({ imgClassName, ...props }: MuiImageProps) => (
- <Image imgClassName={'some-custom-class'} {...props} />
+const customImage = ({ className, ...props }: MuiImageProps) => (
+  <Image className="some-custom-class" {...props} />
 );
 ```
 
 You also can extend the props by importing props.
 
 ```ts
-import Image, { MuiImageProps } from 'mui-image';
+import React from 'react';
+import Image, { ImageProps } from 'mui-image';
 
-interface CustomMuiImageProps extends MuiImageProps {
- customImage: string;
-}
+type CustomImageProps = ImageProps & {
+  customImage: string;
+};
 
-const customImage = ({ customImage, ...props }: CustomMuiImageProps) => {
- const imageSrc = () => {
-  if (customImage === 'grass') {
-   return 'https//www.picture.org/grass.png';
-  }
+const customImage = ({ customImage, src, ...props }: CustomImageProps) => {
+  const imageSrc = () => {
+    if (customImage === 'grass') {
+      return 'https//www.picture.org/grass.png';
+    }
 
-  if (customImage === 'beach') {
-   return 'https//www.picture.org/beach.png';
-  }
- };
- return <Image src={imageSrc()} {...props} />;
+    if (customImage === 'beach') {
+      return 'https//www.picture.org/beach.png';
+    }
+
+    return 'https//www.picture.org/none.png';
+  };
+  return <Image src={imageSrc()} {...props} />;
+};
+```
+
+You can also change the component root element like official MUI components. Only img or img-derived component are supported from time being.
+
+```ts
+import React, { ElementType } from 'react';
+import Image, { ImageProps } from 'mui-image';
+
+const CustomImg = ({ className, loading, ...other }) => (
+  <img className="whatever-custom-img" loading="lazy" {...other} />
+);
+
+type CustomImageProps<M extends ElementType<any> = 'img'> = ImageProps<M> & {
+  customImage: string;
+};
+
+const customImage = ({
+  customImage,
+  src,
+  ...props
+}: CustomImageProps<'img'>) => {
+  const imageSrc = () => {
+    if (customImage === 'grass') {
+      return 'https//www.picture.org/grass.png';
+    }
+
+    if (customImage === 'beach') {
+      return 'https//www.picture.org/beach.png';
+    }
+
+    return 'https//www.picture.org/none.png';
+  };
+  return <Image src={imageSrc()} component={CustomImg} {...props} />;
 };
 ```
 
@@ -184,33 +214,34 @@ Like and subscribe below for more. ⏬
 
 ## Props
 
-| Name                 | Type             | Default                      | Description                                                                                                                |
-| -------------------- | ---------------- | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| alt                  | string           | ""                           | image `alt` tag value                                                                                                      |
-| bgColor              | string           | "inherit"                    | the color the image transitions in from                                                                                    |
-| className            | string           | "mui-image-wrapper"          | CSS `class` for the image wrapper `div` for better styled support.                                                               |
-| distance             | string / number  | 100                          | any valid [CSS `length` value](https://developer.mozilla.org/en-US/docs/Web/CSS/length#units) (for the shift)              |
-| duration             | number           | 3000                         | sets the CSS [`transition-duration`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration) in milliseconds |
-| easing               | string           | cubic-bezier(0.7, 0, 0.6, 1) | sets the CSS [`transition-timing-function`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function)   |
-| errorIcon            | boolean / node   | true                         | display default error icon, or your own                                                                                    |
-| fit                  | string           | "contain"                    | any valid [CSS `object-fit` value](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit#syntax)                     |
-| height               | number / string  | "100%"                       | any valid [CSS `height` value](https://developer.mozilla.org/en-US/docs/Web/CSS/height)                                    |
-| iconWrapperClassName | string           | "mui-image-iconWrapper"      | CSS `class` for the icon wrapper `div`                                                                                     |
-| iconWrapperStyle     | object           |                              | inline styles for the icon wrapper `div`                                                                                   |
-| position             | string           | "relative"                   | any valid [CSS `position` value](https://developer.mozilla.org/en-US/docs/Web/CSS/position)                                |
-| shift                | boolean / string | false                        | either "left", "right", "top", "bottom", `null`, or `false`                                                                |
-| shiftDuration        | number           | duration \* 0.3              | duration of shift in milliseconds                                                                                          |
-| showLoading          | boolean / node   | false                        | display default loading spinner, or your own                                                                               |
-| **_src_** \*         | string           |                              | image `src` tag... _required_                                                                                              |
-| style                | object           |                              | inline styles for the image                                                                                                |
-| width                | number / string  | "100%"                       | any valid [CSS `width` value](https://developer.mozilla.org/en-US/docs/Web/CSS/width)                                      |
-| imgClassName         | string           | "mui-image-img"              | CSS `class` for the root `img` element                                                                                 |
-| wrapperStyle         | object           |                              | inline styles for the root wrapper `div`                                                                                   |
-| sx                   | object           |                              | Check out [official documentation](https://mui.com/system/getting-started/the-sx-prop/) of the `sx` prop.                  |
+| Name                 | Type             | Default                      | Description                                                                                                                                                                                                                                                                                    |
+| -------------------- | ---------------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| alt                  | string           | ""                           | Alternate text for the image, which is displayed if the image fails to load or is not available. This text is also used by screen readers to provide a textual representation of the image for users who are visually impaired.                                                                |
+| bgColor              | string           | "inherit"                    | Background color of the image when it first loads. This can be used to create a smooth transition between the loading state and the fully-loaded image.                                                                                                                                        |
+| className            | string           | "mui-image-img"              | Class name to be applied to the root element of the Image component.                                                                                                                                         |
+| distance             | string / number  | 100                          | Distance (in any valid CSS length units) that the image should shift when it finishes loading. This prop is only used if the shift prop is set. Accept valid [CSS `length`](https://developer.mozilla.org/en-US/docs/Web/CSS/length#units) value.                               |
+| duration             | number           | 3000                         | Duration of the transition (in milliseconds) when the image finishes loading. This prop is used to set the transition-duration CSS property on the image. Accept valid CSS [`transition-duration`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration) in milliseconds.                   |
+| easing               | string           | cubic-bezier(0.7, 0, 0.6, 1) | Easing function for the transition when the image finishes loading. This prop is used to set the transition-timing-function CSS property on the image. Accept valid CSS [`transition-timing-function`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function) value.                            |
+| errorIcon            | boolean / node   | true                         | Whether or not to display an error icon when the image fails to load. If set to true, the default error icon will be displayed. If set to false, no error icon will be displayed. If set to a JSX element, the specified element will be displayed as the error icon.                          |
+| fit                  | string           | "contain"                    | How the image should be resized to fit within its container. Accept valid CSS [`object-fit`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit#syntax) value.                                                                                                         |
+| iconWrapperClassName | string           | "mui-image-iconWrapper"      | Class name to be applied to the `div` element that wraps the error or loading icon. This can be used to apply custom styles to the icon using CSS.                                                                                                                                               |
+| iconWrapperStyle     | object           |                 { }             | Inline styles to be applied to the `div` element that wraps the error or loading icon.                                                                                                                                                                                                           |
+| position             | string           | "relative"                   | Positioning of the image within its container. Accept valid CSS [`position`](https://developer.mozilla.org/en-US/docs/Web/CSS/position) value.                                                                                                                                  |
+| shift                | boolean / string | false                        | Direction in which the image should shift when it finishes loading. Possible values are "left", "right", "top", "bottom", null, or false. If set to null or false, no shift animation will be applied.                                                                                         |
+| shiftDuration        | number           | duration \* 0.3              | Duration of the shift animation (in milliseconds) when the image finishes loading. This prop is only used if the shift prop is set to a valid shift direction.                                                                                                                                 |
+| showLoading          | boolean / node   | false                        | Whether or not to display a loading indicator while the image is loading. If set to true, the default loading indicator will be displayed. If set to false, no loading indicator will be displayed. If set to a JSX element, the specified element will be displayed as the loading indicator. |
+| **_src_** \*         | string           |                              | Source of the image to be displayed. This value should be a valid URL or file path to the image.                                                                                                                                                                                               |
+| style                | object           |                              | Inline styles to be applied to the root element of the Image component.                                                                                                                                                                                                                        |
+| wrapperClassName     | string           | "mui-image-wrapper"          | Class name to be applied to the root `div` element that wraps the Image component.                                                                                       |
+| wrapperStyle         | object           |                              | Inline styles to be applied to the root `div` element that wraps the Image component.                                                                                                                                                                                                   |
+| sx                   | object           |                              | Allows the user to style the Image component using the theme and style props provided by the MUI library. Used in the same way as the sx prop in other MUI components. Check out [MUI official documentation](https://mui.com/system/getting-started/the-sx-prop/) of the `sx` prop.           |
+| component            | string / node    |                              | Allows the user to specify a custom element to use as the root element for the Image component. Used in the same way as the component prop in other MUI components. Should only be used with elements that are derived from the `img` element (e.g., `img`, `picture`, etc.).                        |
 
 \* required prop
 
-Any other props (eg. `sx`, `onLoad`) are passed directly to the native `img` element.
+Any other props (eg. `src`, `alt`, `onLoad`) are passed directly to the native `img` element.
+
+All the description on this table are generated using ChatGPT and edited by me. 👍
 
 ## Material guidelines for loading images
 
