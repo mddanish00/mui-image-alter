@@ -1,6 +1,13 @@
 <div align="center">
     <h1><span>🌅</span><br /><code>mui-image</code></h1>
 </div>
+
+<div align="center">
+
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Miracutor/mui-image/test.yml?style=flat-square) ![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/Miracutor/mui-image?style=flat-square)
+
+</div>
+
 <p align="center">
   The <b>fork</b> by Miracutor. Original project <a href="https://github.com/benmneb/mui-image">here.</a>
 </p>
@@ -35,7 +42,7 @@ Changes in this fork:
 
 - Add component (only works for `img` and `img`-derived HTML element) and sx prop from official MUI.
 
-- Height and width prop forwarded to root `img` element instead of using CSS to set height and width.
+- Height and width prop forwarded to the component root element instead of using CSS to set height and width.
 
 ## Simple Q & A
 
@@ -44,7 +51,7 @@ Changes in this fork:
   Originally, I want to just post an issue for this but I am suck in comunication.
 
 - **Q**: Are you not going to publish on npm?  
-  **A**: Probably not. I don't think there is any demand on this. I am just weird. Maybe if someone post an issue about this and 100 person comment on that issue, maybe I will do it.
+  **A**: Probably not. I don't think there is any demand on this. I am just weird. Maybe if someone post an issue about this and 100 people comment on that issue, maybe I will do it.
 
 - **Q**: Why you change nwb to Vite?  
   **A**: I just wanted to fork for my own benefit. So, I thought maybe I can write this in TypeScript... but it don't work with nwb. I am so frustrated that I cannot find how to do it and try migarating to Vite instead. It took a lot of work but never thought it work so well...
@@ -53,7 +60,7 @@ Changes in this fork:
   Vite is so fast!!!😍
 
 - **Q**: Will you intergrate changes from the original project?  
-  **A**: Yeah. As many as I can.
+  **A**: Yeah. As many as possible.
 
 ---
 
@@ -218,28 +225,28 @@ Like and subscribe below for more. ⏬
 | -------------------- | ---------------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | alt                  | string           | ""                           | Alternate text for the image, which is displayed if the image fails to load or is not available. This text is also used by screen readers to provide a textual representation of the image for users who are visually impaired.                                                                |
 | bgColor              | string           | "inherit"                    | Background color of the image when it first loads. This can be used to create a smooth transition between the loading state and the fully-loaded image.                                                                                                                                        |
-| className            | string           | "mui-image-img"              | Class name to be applied to the root element of the Image component.                                                                                                                                         |
-| distance             | string / number  | 100                          | Distance (in any valid CSS length units) that the image should shift when it finishes loading. This prop is only used if the shift prop is set. Accept valid [CSS `length`](https://developer.mozilla.org/en-US/docs/Web/CSS/length#units) value.                               |
-| duration             | number           | 3000                         | Duration of the transition (in milliseconds) when the image finishes loading. This prop is used to set the transition-duration CSS property on the image. Accept valid CSS [`transition-duration`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration) in milliseconds.                   |
-| easing               | string           | cubic-bezier(0.7, 0, 0.6, 1) | Easing function for the transition when the image finishes loading. This prop is used to set the transition-timing-function CSS property on the image. Accept valid CSS [`transition-timing-function`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function) value.                            |
+| className            | string           | "mui-image-img"              | Class name to be applied to the root element of the Image component.                                                                                                                                                                                                                           |
+| distance             | string / number  | 100                          | Distance (in any valid CSS length units) that the image should shift when it finishes loading. This prop is only used if the shift prop is set. Accept valid CSS [`length`](https://developer.mozilla.org/en-US/docs/Web/CSS/length#units) value.                                              |
+| duration             | number           | 3000                         | Duration of the transition (in milliseconds) when the image finishes loading. This prop is used to set the transition-duration CSS property on the image. Accept valid CSS [`transition-duration`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration) in milliseconds.      |
+| easing               | string           | cubic-bezier(0.7, 0, 0.6, 1) | Easing function for the transition when the image finishes loading. This prop is used to set the transition-timing-function CSS property on the image. Accept valid CSS [`transition-timing-function`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function) value.     |
 | errorIcon            | boolean / node   | true                         | Whether or not to display an error icon when the image fails to load. If set to true, the default error icon will be displayed. If set to false, no error icon will be displayed. If set to a JSX element, the specified element will be displayed as the error icon.                          |
-| fit                  | string           | "contain"                    | How the image should be resized to fit within its container. Accept valid CSS [`object-fit`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit#syntax) value.                                                                                                         |
-| iconWrapperClassName | string           | "mui-image-iconWrapper"      | Class name to be applied to the `div` element that wraps the error or loading icon. This can be used to apply custom styles to the icon using CSS.                                                                                                                                               |
-| iconWrapperStyle     | object           |                 { }             | Inline styles to be applied to the `div` element that wraps the error or loading icon.                                                                                                                                                                                                           |
-| position             | string           | "relative"                   | Positioning of the image within its container. Accept valid CSS [`position`](https://developer.mozilla.org/en-US/docs/Web/CSS/position) value.                                                                                                                                  |
+| fit                  | string           | "contain"                    | How the image should be resized to fit within its container. Accept valid CSS [`object-fit`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit#syntax) value.                                                                                                                        |
+| iconWrapperClassName | string           | "mui-image-iconWrapper"      | Class name to be applied to the `div` element that wraps the error or loading icon. This can be used to apply custom styles to the icon using CSS.                                                                                                                                             |
+| iconWrapperStyle     | object           | { }                          | Inline styles to be applied to the `div` element that wraps the error or loading icon.                                                                                                                                                                                                         |
+| position             | string           | "relative"                   | Positioning of the image within its container. Accept valid CSS [`position`](https://developer.mozilla.org/en-US/docs/Web/CSS/position) value.                                                                                                                                                 |
 | shift                | boolean / string | false                        | Direction in which the image should shift when it finishes loading. Possible values are "left", "right", "top", "bottom", null, or false. If set to null or false, no shift animation will be applied.                                                                                         |
 | shiftDuration        | number           | duration \* 0.3              | Duration of the shift animation (in milliseconds) when the image finishes loading. This prop is only used if the shift prop is set to a valid shift direction.                                                                                                                                 |
 | showLoading          | boolean / node   | false                        | Whether or not to display a loading indicator while the image is loading. If set to true, the default loading indicator will be displayed. If set to false, no loading indicator will be displayed. If set to a JSX element, the specified element will be displayed as the loading indicator. |
 | **_src_** \*         | string           |                              | Source of the image to be displayed. This value should be a valid URL or file path to the image.                                                                                                                                                                                               |
 | style                | object           |                              | Inline styles to be applied to the root element of the Image component.                                                                                                                                                                                                                        |
-| wrapperClassName     | string           | "mui-image-wrapper"          | Class name to be applied to the root `div` element that wraps the Image component.                                                                                       |
-| wrapperStyle         | object           |                              | Inline styles to be applied to the root `div` element that wraps the Image component.                                                                                                                                                                                                   |
+| wrapperClassName     | string           | "mui-image-wrapper"          | Class name to be applied to the root `div` element that wraps the Image component.                                                                                                                                                                                                             |
+| wrapperStyle         | object           |                              | Inline styles to be applied to the root `div` element that wraps the Image component.                                                                                                                                                                                                          |
 | sx                   | object           |                              | Allows the user to style the Image component using the theme and style props provided by the MUI library. Used in the same way as the sx prop in other MUI components. Check out [MUI official documentation](https://mui.com/system/getting-started/the-sx-prop/) of the `sx` prop.           |
-| component            | string / node    |                              | Allows the user to specify a custom element to use as the root element for the Image component. Used in the same way as the component prop in other MUI components. Should only be used with elements that are derived from the `img` element (e.g., `img`, `picture`, etc.).                        |
+| component            | string / node    |                              | Allows the user to specify a custom element to use as the root element for the Image component. Used in the same way as the component prop in other MUI components. Should only be used with elements that are derived from the `img` element.                                                 |
 
 \* required prop
 
-Any other props (eg. `src`, `alt`, `onLoad`) are passed directly to the native `img` element.
+Any other props (eg. `src`, `alt`, `onLoad`) are passed directly to the root image element like `img`.
 
 All the description on this table are generated using ChatGPT and edited by me. 👍
 
