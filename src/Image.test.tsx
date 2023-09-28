@@ -103,19 +103,21 @@ test('component has correct position and fit values', async () => {
   expect(image).toHaveStyle('object-fit: contain');
 });
 
-test('wrapperClassName and iconWrapperClassName props are applied correctly', async () => {
+test('className, wrapperClassName and iconWrapperClassName props are applied correctly', async () => {
   const { findByTestId } = render(
     <Image
       src="valid-image-url"
-      wrapperClassName="custom-image-class"
+      className='custom-image-class'
+      wrapperClassName="custom-image-wrapper-class"
       iconWrapperClassName="custom-icon-wrapper-class"
       data-testid="testing-MuiImage"
       errorIcon={<span data-testid="testing-MuiImage-errorIcon" />}
     />
   );
   const image = await findByTestId('testing-MuiImage');
+  expect(image.className).toContain('custom-image-class');
   expect(image.parentElement && image.parentElement.className).toContain(
-    'custom-image-class'
+    'custom-image-wrapper-class'
   );
   fireEvent.error(image);
   const errorIconWrapper = await findByTestId('testing-MuiImage-errorIcon');
