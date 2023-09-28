@@ -55,21 +55,24 @@ export default function Image(props: ImageProps<'img'>) {
 	const [loaded, setLoaded] = React.useState(false);
 	const [error, setError] = React.useState(false);
 
-	function handleLoad() {
+	const handleLoad = React.useCallback(() => {
 		setLoaded(true);
 		setError(false);
-		if (Boolean(onLoadProp)) onLoadProp();
-	}
+		if (onLoadProp) onLoadProp();
+	}, [onLoadProp]);
 
-	function handleError() {
+	const handleError = React.useCallback(() => {
 		setError(true);
 		setLoaded(false);
-		if (Boolean(onErrorProp)) onErrorProp();
-	}
+		if (onErrorProp) onErrorProp();
+	}, [onErrorProp]);
 
-	const shiftStyles = {
-		[shift]: loaded ? 0 : distance,
-	};
+	const shiftStyles =
+		shift !== undefined && shift !== false && shift !== null
+			? {
+					[shift]: loaded ? 0 : distance,
+			  }
+			: {};
 
 	const styles = {
 		root: {
