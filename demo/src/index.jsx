@@ -178,7 +178,7 @@ export function Demo() {
 							getBeforeInit={(instance) => {
 								instance
 									.pause(3500)
-									.type('npm install https://github.com/Miracutor/mui-image')
+									.type('npm install https://github.com/mddanish00/mui-image')
 									.pause(1500)
 									.delete()
 									.type("import Image from 'mui-image'");
@@ -217,7 +217,7 @@ export function Demo() {
 						</IconButton> */}
 						<IconButton
 							onClick={() =>
-								window.open('https://github.com/Miracutor/mui-image')
+								window.open('https://github.com/mddanish00/mui-image')
 							}
 							color="inherit"
 						>

@@ -4,18 +4,18 @@
 
 <div align="center">
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Miracutor/mui-image/test.yml?style=flat-square) ![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/Miracutor/mui-image?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mddanish00/mui-image/test.yml?style=flat-square) ![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/mddanish00/mui-image?style=flat-square)
 
 </div>
 
 <p align="center">
-  The <b>fork</b> by Miracutor. Original project <a href="https://github.com/benmneb/mui-image">here.</a>
+  The <b>fork</b> by mddanish00. Original project <a href="https://github.com/benmneb/mui-image">here.</a>
 </p>
 <p align="center">
   The only Material-UI image component to satisfy the Material guidelines for loading images.
 </p>
 <p align="center">
-  <strong><a href="https://miracutor.github.io/mui-image/">Demo Playground ↗️</a></strong> <br />
+  <strong><a href="https://mddanish00.github.io/mui-image/">Demo Playground ↗️</a></strong> <br />
 </p>
 
 ### If you're already using [Material-UI v5](https://mui.com), why not display your images according to the Material guidelines too?
@@ -67,7 +67,7 @@ Changes in this fork:
 ### 1. Install
 
 ```shell
-npm i https://github.com/Miracutor/mui-image
+npm i https://github.com/mddanish00/mui-image
 ```
 
 ### 2. Use
@@ -286,7 +286,7 @@ All the description on this table are generated using ChatGPT and edited by me. 
 
 Original Copyright (c) [benmneb](https://github.com/benmneb)
 
-Copyright (c) 2022 [Miracutor](https://github.com/Miracutor)
+Copyright (c) 2022 [mddanish00](https://github.com/mddanish00)
 
 [ISC License](https://choosealicense.com/licenses/isc/)
 
