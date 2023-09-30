@@ -14,6 +14,13 @@ const BrokenImageIcon = (props: SvgIconProps) => (
 	</SvgIcon>
 );
 
+/**
+ * A custom image component that satisfy the Material guidelines for loading images.
+ *
+ * Fork by mddanish00. Original by benmneb.
+ *
+ * API: https://github.com/mddanish00/mui-image/blob/master/README.md
+ */
 const Image = React.forwardRef(
 	<BaseComponentType extends React.ElementType = ImageTypeMap['defaultComponent']>(
 		{
