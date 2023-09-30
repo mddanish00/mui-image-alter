@@ -11,42 +11,28 @@ const BrokenImageIcon = (props: SvgIconProps) => (
 	</SvgIcon>
 );
 
-const Img = styled('img')({
-	'@keyframes materialize': {
-		'0%': {
-			filter: 'saturate(20%) contrast(50%) brightness(120%)',
-		},
-		'75%': {
-			filter: 'saturate(60%) contrast(100%) brightness(100%)',
-		},
-		'100%': {
-			filter: 'saturate(100%) contrast(100%) brightness(100%)',
-		},
-	},
-});
-
 export default function Image(props: ImageProps<'img'>) {
 	const {
 		src,
-		alt,
+		alt = '',
 		height,
 		width,
-		position,
-		fit,
+		position = 'relative',
+		fit = 'cover',
 		style,
-		className,
-		showLoading,
-		errorIcon,
-		shift,
-		distance,
-		shiftDuration,
-		bgColor,
+		className = '',
+		showLoading = false,
+		errorIcon = true,
+		shift = false,
+		distance = 100,
+		shiftDuration = undefined,
+		bgColor = 'inherit',
 		wrapperStyle,
 		iconWrapperStyle,
-		wrapperClassName,
-		iconWrapperClassName,
-		duration,
-		easing,
+		wrapperClassName = '',
+		iconWrapperClassName = '',
+		duration = 3000,
+		easing = 'cubic-bezier(0.7, 0, 0.6, 1)', // "heavy move" from https://sprawledoctopus.com/easing/,
 		onLoad: onLoadProp,
 		onError: onErrorProp,
 		...rest
@@ -74,42 +60,6 @@ export default function Image(props: ImageProps<'img'>) {
 			  }
 			: {};
 
-	const styles = {
-		root: {
-			width,
-			height,
-			display: 'flex',
-			justifyContent: 'center',
-			alignItems: 'center',
-			backgroundColor: bgColor,
-			...wrapperStyle,
-		},
-		image: {
-			position,
-			width: '100%',
-			height: '100%',
-			objectFit: fit,
-			transitionProperty: `${Boolean(shift) ? `${shift}, ` : ''}opacity`,
-			transitionDuration: `${Boolean(shift) ? `${shiftDuration || duration * 0.3}ms, ` : ''}${
-				duration / 2
-			}ms`,
-			transitionTimingFunction: easing,
-			opacity: loaded ? 1 : 0,
-			animation: loaded ? `materialize ${duration}ms 1 ${easing}` : '',
-			...(Boolean(shift) && shiftStyles),
-			...style,
-		},
-		icons: {
-			width: '100%',
-			marginLeft: '-100%',
-			display: 'flex',
-			justifyContent: 'center',
-			alignItems: 'center',
-			opacity: loaded ? 0 : 1,
-			...iconWrapperStyle,
-		},
-	};
-
 	const showErrorIcon = (typeof errorIcon !== 'boolean' && errorIcon) || (
 		<BrokenImageIcon style={{ fontSize: 56, color: '#bdbdbd' }} /> // MUI grey[400]
 	);
@@ -119,22 +69,117 @@ export default function Image(props: ImageProps<'img'>) {
 	);
 
 	return (
-		<div style={styles.root} className={`mui-image-wrapper ${wrapperClassName}`}>
-			<Img
+		<MuiImageWrapper style={wrapperStyle} className={`mui-image-wrapper ${wrapperClassName}`}>
+			<MuiImageRoot
 				src={src}
 				alt={alt}
-				style={styles.image}
+				style={style}
 				className={`mui-image-img ${className}`}
 				onLoad={handleLoad}
 				onError={handleError}
+				position={position}
+				fit={fit}
+				shift={shift}
+				shiftDuration={shiftDuration}
+				shiftStyles={shiftStyles}
+				duration={duration}
+				easing={easing}
+				loaded={loaded}
 				{...rest}
 			/>
 			{(Boolean(showLoading) || Boolean(errorIcon)) && (
-				<div style={styles.icons} className={`mui-image-iconWrapper ${iconWrapperClassName}`}>
+				<MuiImageIconWrapper
+					style={iconWrapperStyle}
+					className={`mui-image-iconWrapper ${iconWrapperClassName}`}
+					loaded={loaded}
+				>
 					{Boolean(errorIcon) && error && showErrorIcon}
 					{Boolean(showLoading) && !error && !loaded && loadingIndicator}
-				</div>
+				</MuiImageIconWrapper>
 			)}
-		</div>
+		</MuiImageWrapper>
 	);
 }
+
+// Utility functions
+const checkProps = (value: string, arr: string[]) => !arr.includes(value);
+
+interface ImgRootProps {
+	position: React.CSSProperties['position'];
+	fit: React.CSSProperties['objectFit'];
+	shift?: 'left' | 'right' | 'top' | 'bottom' | false | null;
+	shiftDuration?: number;
+	shiftStyles: {
+		[x: string]: string | number;
+	};
+	duration: number;
+	easing: React.CSSProperties['transitionTimingFunction'];
+	loaded: boolean;
+}
+
+// Custom component using styled
+const MuiImageRoot = React.memo(
+	styled('img', {
+		shouldForwardProp: (prop) =>
+			checkProps(prop.toString(), [
+				'position',
+				'fit',
+				'shift',
+				'shiftDuration',
+				'shiftStyles',
+				'duration',
+				'easing',
+				'loaded',
+				'sx',
+				'as',
+			]),
+	})<ImgRootProps>((props) => ({
+		'@keyframes materialize': {
+			'0%': {
+				filter: 'saturate(20%) contrast(50%) brightness(120%)',
+			},
+			'75%': {
+				filter: 'saturate(60%) contrast(100%) brightness(100%)',
+			},
+			'100%': {
+				filter: 'saturate(100%) contrast(100%) brightness(100%)',
+			},
+		},
+		position: props.position,
+		objectFit: props.fit,
+		transitionProperty: `${Boolean(props.shift) ? `${props.shift}, ` : ''}opacity`,
+		transitionDuration: `${
+			Boolean(props.shift) ? `${props.shiftDuration || props.duration * 0.3}ms, ` : ''
+		}${props.duration / 2}ms`,
+		transitionTimingFunction: props.easing,
+		opacity: props.loaded ? 1 : 0,
+		animation: props.loaded ? `materialize ${props.duration}ms 1 ${props.easing}` : '',
+		...(Boolean(props.shift) && props.shiftStyles),
+	})),
+);
+
+const MuiImageWrapper = React.memo(
+	styled('div', {
+		shouldForwardProp: (prop) => checkProps(prop.toString(), ['bgColor', 'sx']),
+	})<{
+		bgColor?: React.CSSProperties['backgroundColor'];
+	}>((props) => ({
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: props.bgColor,
+	})),
+);
+
+const MuiImageIconWrapper = React.memo(
+	styled('div', {
+		shouldForwardProp: (prop) => prop !== 'loaded',
+	})<{ loaded: boolean }>((props) => ({
+		width: '100%',
+		marginLeft: '-100%',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		opacity: props.loaded ? 0 : 1,
+	})),
+);
