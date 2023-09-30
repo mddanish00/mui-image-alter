@@ -5,7 +5,6 @@
 	"main": "lib/index.js",
 	"module": "es/index.js",
 	"files": [
-		"css",
 		"es",
 		"lib",
 		"umd"
@@ -15,9 +14,13 @@
 		"build": "vite build",
 		"build:demo": "vite --config vite.democonfig.ts build",
 		"preview": "vite preview",
-		"clean": "rimraf dist es lib umd",
-		"prepublishOnly": "npm run build",
-		"size": "size-limit"
+		"size": "size-limit",
+		"clean": "rimraf dist es lib umd coverage jest-setup.d.ts",
+		"prepare": "npm run build",
+		"postversion": "git push && git push --tags",
+		"test": "vitest",
+		"test:once": "vitest run",
+		"test:coverage": "vitest run --coverage"
 	},
 	"peerDependencies": {
 		"@emotion/react": "^11.4.1",
