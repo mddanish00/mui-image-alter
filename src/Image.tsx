@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import { styled } from '@mui/material/styles';
+import styled from '@mui/material/styles/styled';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import clsx from 'clsx';
 
-import { ImageProps, ImageTypeMap, MuiImage } from './Image.types';
+import { ImageProps, MuiImage, ImageTypeMap } from './Image.types';
 
 const BrokenImageIcon = (props: SvgIconProps) => (
 	<SvgIcon {...props}>
