@@ -63,7 +63,7 @@ const Image = React.forwardRef(
 				: {};
 
 		const showErrorIcon = (typeof errorIcon !== 'boolean' && errorIcon) || (
-			<BrokenImageIcon style={{ fontSize: 56, color: '#bdbdbd' }} /> // MUI grey[400]
+			<BrokenImageIcon sx={{ fontSize: 56, color: '#bdbdbd' }} /> // MUI grey[400]
 		);
 
 		const loadingIndicator = (typeof showLoading !== 'boolean' && showLoading) || (
