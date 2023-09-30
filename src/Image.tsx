@@ -71,7 +71,12 @@ const Image = React.forwardRef(
 		);
 
 		return (
-			<MuiImageWrapper style={wrapperStyle} className={`mui-image-wrapper ${wrapperClassName}`}>
+			<MuiImageWrapper
+				className={`mui-image-wrapper ${wrapperClassName}`}
+				sx={sx}
+				style={wrapperStyle}
+				bgColor={bgColor}
+			>
 				<MuiImageRoot
 					ref={ref}
 					as={component}
