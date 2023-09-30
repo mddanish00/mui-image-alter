@@ -3,6 +3,9 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import CircularProgress from '@mui/material/CircularProgress';
+
+import clsx from 'clsx';
+
 import { ImageProps, ImageTypeMap, MuiImage } from './Image.types';
 
 const BrokenImageIcon = (props: SvgIconProps) => (
@@ -72,7 +75,7 @@ const Image = React.forwardRef(
 
 		return (
 			<MuiImageWrapper
-				className={`mui-image-wrapper ${wrapperClassName}`}
+				className={clsx('mui-image-wrapper', wrapperClassName)}
 				sx={sx}
 				style={wrapperStyle}
 				bgColor={bgColor}
@@ -83,7 +86,7 @@ const Image = React.forwardRef(
 					src={src}
 					alt={alt}
 					style={style}
-					className={`mui-image-img ${className}`}
+					className={clsx('mui-image-img', className)}
 					onLoad={handleLoad}
 					onError={handleError}
 					position={position}
@@ -98,8 +101,8 @@ const Image = React.forwardRef(
 				/>
 				{(Boolean(showLoading) || Boolean(errorIcon)) && (
 					<MuiImageIconWrapper
+						className={clsx('mui-image-iconWrapper', iconWrapperClassName)}
 						style={iconWrapperStyle}
-						className={`mui-image-iconWrapper ${iconWrapperClassName}`}
 						loaded={loaded}
 					>
 						{Boolean(errorIcon) && error && showErrorIcon}
