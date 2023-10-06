@@ -20,7 +20,8 @@
 		"postversion": "git push && git push --tags",
 		"test": "vitest",
 		"test:once": "vitest run",
-		"test:coverage": "vitest run --coverage"
+		"test:coverage": "vitest run --coverage",
+		"test:coverage-ci": "vitest run --coverage.enabled --coverage.reporter='text-summary'"
 	},
 	"peerDependencies": {
 		"@emotion/react": "^11.4.1",
@@ -52,6 +53,9 @@
 		}
 	],
 	"author": "mddanish00",
+	"contributors": [
+		"benmneb"
+	],
 	"homepage": "https://mddanish00.github.io/mui-image",
 	"license": "ISC",
 	"repository": "https://github.com/mddanish00/mui-image",
