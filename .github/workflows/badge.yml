@@ -1,0 +1,42 @@
+name: Generate Badge
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Set Node Environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+
+      - name: Update npm latest
+        run: |
+          npm install -g npm@latest
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Coverage test
+        run: |
+          SUMMARY="$(npm run test:coverage-ci | tail -2 | head -1)"
+          TOKENS=($SUMMARY)
+          echo "COVERAGE=$(echo ${TOKENS[2]})" >> $GITHUB_ENV
+        
+      - name: Create the Badge
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: 83c2a74197bb80b661019a2747e71daa
+          filename: mui-image-alter_coverage__main.json
+          label: Coverage
+          message: ${{ env.COVERAGE }}
+          style: flat-square 
+          maxColorRange: 90
+          minColorRange: 50
+          namedLogo: vitest
