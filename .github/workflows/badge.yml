@@ -1,7 +1,7 @@
 name: Generate Badge
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,8 +27,13 @@ jobs:
           SUMMARY="$(npm run test:coverage-ci | tail -2 | head -1)"
           TOKENS=($SUMMARY)
           echo "COVERAGE=$(echo ${TOKENS[2]})" >> $GITHUB_ENV
-        
-      - name: Create the Badge
+
+      - name: Run size-limit
+        run: |
+          SIZELIMIT="$(npx size-limit --json | grep 'size' | sed -r 's/^[^:]*:(.*)$/\1/' | npx -y pretty-bytes-cli)"
+          echo "SIZE=$(echo ${SIZELIMIT})" >> $GITHUB_ENV
+
+      - name: Create the Coverage Badge
         uses: schneegans/dynamic-badges-action@v1.6.0
         with:
           auth: ${{ secrets.GIST_SECRET }}
@@ -36,7 +41,17 @@ jobs:
           filename: mui-image-alter_coverage__main.json
           label: Coverage
           message: ${{ env.COVERAGE }}
-          style: flat-square 
+          style: flat-square
           maxColorRange: 90
           minColorRange: 50
           namedLogo: vitest
+
+      - name: Create the Size Badge
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: 83c2a74197bb80b661019a2747e71daa
+          filename: mui-image-alter_size__main.json
+          label:
+          message: ${{ env.SIZE }}
+          style: flat-square
