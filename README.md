@@ -1,15 +1,20 @@
 <div align="center">
-    <h1><span>🌅</span><br /><code>mui-image</code></h1>
+    <h1><span>🌅</span><br /><code>mui-image-alter</code></h1>
 </div>
 <p align="center">
-  The only Material UI image component to satisfy the Material Design guidelines for loading images.
+  The another Material UI image component to satisfy the Material Design guidelines for loading images.
+</p>
+<div align="center">
+
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mddanish00/mui-image/test.yml?style=flat-square) ![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/mddanish00/mui-image?style=flat-square) ![Coverage from badge.yml](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mddanish00/83c2a74197bb80b661019a2747e71daa/raw/mui-image-alter_coverage__main.json)
+![Size from badge.yml](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mddanish00/83c2a74197bb80b661019a2747e71daa/raw/mui-image-alter_size__main.json)
+
+</div>
+<p align="center">
+  The <b>fork</b> by mddanish00. Original project <a href="https://github.com/benmneb/mui-image">here</a>.
 </p>
 <p align="center">
-  <img src="https://img.shields.io/npm/v/mui-image?style=flat-square" />
-  <img src="https://img.shields.io/bundlephobia/minzip/mui-image?style=flat-square" />
-</p>
-<p align="center">
-  <strong><a href="https://mui-image.surge.sh">Demo Playground ↗️</a></strong> <br />
+  <strong><a href="https://mddanish00.github.io/mui-image/">Demo Playground ↗️</a></strong> <br />
 </p>
 
 ### If you're already using [Material UI v5](https://material-ui.com), why not display your images according to the Material guidelines too?
@@ -20,28 +25,88 @@
 >
 > \- [Material guidelines](https://material.io/archive/guidelines/patterns/loading-images.html#loading-images-usage)
 
+## About the fork
+
+Alter from alternative.
+
+I actually just to make a fork with small modification for my website but somehow I ended changed many things... How it became like this?
+
+### Why should I use this?
+
+If you satisfied with original project, you probably not need this. This is for users with a specific need.
+
+To put it simply, you only needed this if:
+
+- You want to change the component root element, `img` with other component like `Image` from `next/image`.
+- You want to use `styled` function from `styled-components` or `emotion`  or `MUI` on `Image` component but noticed some style not working properly.[^1]
+
+[^1]: This happen on original project because the styles set using style prop. To correct this for original project, you need to use style or wrapperStyle or iconWrapperStyle that provided to overwrite the default style.
+
+### Changes in this fork
+
+- Breaking Changes
+  - Height and width prop forwarded to the component root element (by default, `img`) instead of using CSS to set height and width of component wrapper element. Some alternate image components like `next/image` actually need for height and width prop.
+  - Put all styles that set though style prop in styled for better compability with MUI's styled.
+
+- Other Changes
+  - Rewritten fully in Typescript with types built-in based on MUI component types.
+  - Add support to MUI's component prop; That's means you can subtitute component root element with `Image` from `next/image` if you want. Component supported are `img`, `img`-derived HTML element and component with `src` prop.
+  - A lighter UMD build by externalize React and Material UI library. (You need both React and Material UI UMD to use this component.)
+
+- Development Changes
+  - Use Vite instead of nwb for development and building the library for fast and better developer experience for me!
+  - Added unit tests for testing mui-image-alter component. Also, added new Github Action that will automatically run these tests every push and pull request.
+
+## Simple Q & A
+
+- **Q**: Why you created this fork?  
+  **A**: MUI's styled don't work very well with the original mui-image because some of default styling and it use style prop instead of using styled to set some of the styling. So, I want to modify a little bit... And I end up doing at lot.  
+  Originally, I want to just post an issue for this but I am suck in comunication. 😅
+
+- **Q**: Are you not going to publish on npm?  
+  **A**: Probably not. I don't think there is any demand on this. I am just weird. Maybe if someone post an issue about this and many people comment on that issue, maybe I will do it.
+
+- **Q**: Why you change nwb to Vite?  
+  **A**: I just wanted to fork for my own benefit. So, I thought maybe I can write this in TypeScript... but it don't work with nwb. I am so frustrated that I cannot find how to do it and try migarating to Vite instead. (Also, looks like nwb is abandoned too...) It took a lot of work but never thought it work so well...
+  Maybe there is actually a way to use Typescript with nwb but I never regret switching to Vite.
+
+  Vite is so fast!!! 😍
+
+- **Q**: Will you intergrate changes from the original project?  
+  **A**: Yeah. As many as possible. 💪
+
+---
+
 ### 1. Install
 
-```
-npm i mui-image
-```
-
-or
-
-```
-yarn add mui-image
+```bash
+npm install github:mddanish00/mui-image-alter
 ```
 
-Using TypeScript? Also add [`@types/mui-image`](https://www.npmjs.com/package/@types/mui-image) 🥳
+```bash
+yarn add mui-image-alter@github:mddanish00/mui-image-alter
+```
+
+Recommended to explicitly provide the tags version like this:
+
+```bash
+npm install github:mddanish00/mui-image-alter#vx.x.xx
+```
+
+```bash
+yarn add mui-image-alter@github:mddanish00/mui-image-alter#vx.x.xx
+```
+
+Replace `x.x.xx` with actual tags from [here](https://github.com/mddanish00/mui-image/tags).
 
 ### 2. Use
 
-```
-import Image from 'mui-image'
+```jsx
+import Image from 'mui-image-alter'
 
 // or
 
-import { Image } from 'mui-image'
+import { Image } from 'mui-image-alter'
 
 // then
 
@@ -54,53 +119,46 @@ _Note: Profits not guaranteed and Material UI v5 is a peer dependency. If you ne
 
 ## Usage Examples
 
-You can use `mui-image` like a regular image.
+You can use `mui-image-alter` like a regular image.
 
-```
+```jsx
 <Image src="my-image.png" />
 ```
 
 Except... it will fade and animate in as the Material guidelines recommend. 🤯
 
-Add a `height` and/or `width` to reserve space on the page for the image and avoid uncomforable content shifts as your picture loads. They both default to 100% of the parent you place them in and accept any valid CSS property. Numbers are converted to pixels.
+Apply the `showLoading` prop to add a progress indicator to let your fans know something amazing is coming. You can use the default MUI indicator or bring your own. 😎
 
-```
-<Image src="my-image.png" width={500} />
-<Image src="my-image.png" height="90vh" />
-```
-
-Apply the `showLoading` prop to add a progress indicator to let your fans know something amazing is coming. You can use the default Material UI indicator or bring your own. 😎
-
-```
+```jsx
 <Image src="my-image.png" showLoading />
 <Image src="my-image.bmp" showLoading={<MyCustomSpinner />} />
 ```
 
 If you want the image to fail silently you can disable the `errorIcon`, or you can add your own to suit your brand.
 
-```
+```jsx
 <Image src="my-cats.png" errorIcon={null} />
 <Image src="my-dogs.png" errorIcon={<MyErrorIcon />} />
 ```
 
 If you want to _disobey Google_ 😵 then you can customise the animation and speed via the `duration` and `easing` props to any valid CSS property. Duration is always milliseconds.
 
-```
+```jsx
 <Image src="my-fish.png" duration={325} />
 <Image src="my-bird.jpg" easing="ease-in-out" />
 ```
 
 To add that extra bit of spice 🌶 you can do exactly what Google suggests and apply a small position `shift` to images as they appear. The direction, distance, and duration (in milliseconds) are up to you.
 
-```
+```jsx
 <Image src="my-lawd.png" shift="left" />
 <Image src="my-gawd.jpg" shift="bottom" distance={300} />
 <Image src="my-gosh.gif" shift="top" distance="2rem" shiftDuration={320} />
 ```
 
-And of course, you can style `mui-image` like you would a regular image... but with the addition of the Material UI v5 `sx` prop and [all the benefits](https://mui.com/system/the-sx-prop/) it brings. 😏
+And of course, you can style `mui-image` like you would a regular image... but with the addition of the MUI v5 `sx` prop and [all the benefits](https://mui.com/system/the-sx-prop/) it brings. 😏
 
-```
+```jsx
 <Image src="my-self.jpeg" style={{ borderRadius: 16 }} />
 <Image src="my-wife.webp" className="custom-class" />
 <Image src="my-exgf.tiff" sx={{ display: { sm: 'none', lg: 'inline' }}} />
@@ -108,36 +166,121 @@ And of course, you can style `mui-image` like you would a regular image... but w
 
 If you want to get fancy 💃 you can also add inline styles and additional `className`'s to the root wrapper `div` and loading/error icon wrapper `div`, or just target their default `className`'s. This allows for complete customisation of every aspect of the component.
 
+### Fork Exclusive Usage
+
+With this fork, you can use MUI's styled normally like this. More info on MUI's [official doccumentation](https://mui.com/system/styled/).
+
+```ts
+import { styled } from '@mui/material/styles';
+import Image from 'mui-image-alter';
+
+const customImage = styled(Image)({
+    margin: 0 auto;
+    max-width: 100%;
+    display: block;
+    max-height: 500px;
+});
+```
+
+You also can use composition to create custom components.
+
+```ts
+import Image, { ImageProps } from 'mui-image-alter';
+
+const customImage = ({ className, ...props }: MuiImageProps) => (
+  <Image className="some-custom-class" {...props} />
+);
+```
+
+You also can extend the props by importing props.
+
+```ts
+import React from 'react';
+import Image, { ImageProps } from 'mui-image-alter';
+
+type CustomImageProps = ImageProps & {
+  customImage: string;
+};
+
+const customImage = ({ customImage, src, ...props }: CustomImageProps) => {
+  const imageSrc = () => {
+    if (customImage === 'grass') {
+      return 'https//www.picture.org/grass.png';
+    }
+
+    if (customImage === 'beach') {
+      return 'https//www.picture.org/beach.png';
+    }
+
+    return 'https//www.picture.org/none.png';
+  };
+  return <Image src={imageSrc()} {...props} />;
+};
+```
+
+You can also change the component root element like official MUI components. Only img or img-derived component are supported from time being.
+
+```ts
+import React, { ElementType } from 'react';
+import Image, { ImageProps } from 'mui-image-alter';
+import NextImage from 'next/image';
+
+type CustomImageProps = ImageProps<typeof NextImage> & {
+  customImage: string;
+};
+
+const customImage = ({
+  customImage,
+  src,
+  ...props
+}: CustomImageProps) => {
+  const imageSrc = () => {
+    if (customImage === 'grass') {
+      return 'https//www.picture.org/grass.png';
+    }
+
+    if (customImage === 'beach') {
+      return 'https//www.picture.org/beach.png';
+    }
+
+    return 'https//www.picture.org/none.png';
+  };
+  return <Image src={imageSrc()} component={NextImage} {...props} />;
+};
+```
+
 Like and subscribe below for more. ⏬
 
 ## Props
 
-| Name                 | Type             | Default                      | Description                                                                                                                |
-| -------------------- | ---------------- | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| alt                  | string           | ""                           | image `alt` tag value                                                                                                      |
-| bgColor              | string           | "inherit"                    | the color the image transitions in from                                                                                    |
-| className            | string           | "mui-image-img"              | CSS `class` for the image                                                                                                  |
-| distance             | string / number  | 100                          | any valid [CSS `length` value](https://developer.mozilla.org/en-US/docs/Web/CSS/length#units) (for the shift)              |
-| duration             | number           | 3000                         | sets the CSS [`transition-duration`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration) in milliseconds |
-| easing               | string           | cubic-bezier(0.7, 0, 0.6, 1) | sets the CSS [`transition-timing-function`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function)   |
-| errorIcon            | boolean / node   | true                         | display default error icon, or your own                                                                                    |
-| fit                  | string           | "contain"                    | any valid [CSS `object-fit` value](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit#syntax)                     |
-| height               | number / string  | "100%"                       | any valid [CSS `height` value](https://developer.mozilla.org/en-US/docs/Web/CSS/height)                                    |
-| iconWrapperClassName | string           | "mui-image-iconWrapper"      | CSS `class` for the icon wrapper `div`                                                                                     |
-| iconWrapperStyle     | object           |                              | inline styles for the icon wrapper `div`                                                                                   |
-| position             | string           | "relative"                   | any valid [CSS `position` value](https://developer.mozilla.org/en-US/docs/Web/CSS/position)                                |
-| shift                | boolean / string | false                        | either "left", "right", "top", "bottom", `null`, or `false`                                                                |
-| shiftDuration        | number           | duration \* 0.3              | duration of shift in milliseconds                                                                                          |
-| showLoading          | boolean / node   | false                        | display default loading spinner, or your own                                                                               |
-| **_src_** \*         | string           |                              | image `src` tag... _required_                                                                                              |
-| style                | object           |                              | inline styles for the image                                                                                                |
-| width                | number / string  | "100%"                       | any valid [CSS `width` value](https://developer.mozilla.org/en-US/docs/Web/CSS/width)                                      |
-| wrapperClassName     | string           | "mui-image-wrapper"          | CSS `class` for the root wrapper `div`                                                                                     |
-| wrapperStyle         | object           |                              | inline styles for the root wrapper `div`                                                                                   |
+| Name                 | Type             | Default                      | Description                                                                                                                                                                                                                                                                                    |
+| -------------------- | ---------------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| alt                  | string           | ""                           | Alternate text for the image, which is displayed if the image fails to load or is not available. This text is also used by screen readers to provide a textual representation of the image for users who are visually impaired.                                                                |
+| bgColor              | string           | "inherit"                    | Background color of the image when it first loads. This can be used to create a smooth transition between the loading state and the fully-loaded image.                                                                                                                                        |
+| className            | string           | "mui-image-img"              | Class name to be applied to the root element of the Image component.                                                                                                                                                                                                                           |
+| distance             | string / number  | 100                          | Distance (in any valid CSS length units) that the image should shift when it finishes loading. This prop is only used if the shift prop is set. Accept valid CSS [`length`](https://developer.mozilla.org/en-US/docs/Web/CSS/length#units) value.                                              |
+| duration             | number           | 3000                         | Duration of the transition (in milliseconds) when the image finishes loading. This prop is used to set the transition-duration CSS property on the image. Accept valid CSS [`transition-duration`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration) in milliseconds.      |
+| easing               | string           | cubic-bezier(0.7, 0, 0.6, 1) | Easing function for the transition when the image finishes loading. This prop is used to set the transition-timing-function CSS property on the image. Accept valid CSS [`transition-timing-function`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function) value.     |
+| errorIcon            | boolean / node   | true                         | Whether or not to display an error icon when the image fails to load. If set to true, the default error icon will be displayed. If set to false, no error icon will be displayed. If set to a JSX element, the specified element will be displayed as the error icon.                          |
+| fit                  | string           | "contain"                    | How the image should be resized to fit within its container. Accept valid CSS [`object-fit`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit#syntax) value.                                                                                                                        |
+| iconWrapperClassName | string           | "mui-image-iconWrapper"      | Class name to be applied to the `div` element that wraps the error or loading icon. This can be used to apply custom styles to the icon using CSS.                                                                                                                                             |
+| iconWrapperStyle     | object           | { }                          | Inline styles to be applied to the `div` element that wraps the error or loading icon.                                                                                                                                                                                                         |
+| position             | string           | "relative"                   | Positioning of the image within its container. Accept valid CSS [`position`](https://developer.mozilla.org/en-US/docs/Web/CSS/position) value.                                                                                                                                                 |
+| shift                | boolean / string | false                        | Direction in which the image should shift when it finishes loading. Possible values are "left", "right", "top", "bottom", null, or false. If set to null or false, no shift animation will be applied.                                                                                         |
+| shiftDuration        | number           | duration \* 0.3              | Duration of the shift animation (in milliseconds) when the image finishes loading. This prop is only used if the shift prop is set to a valid shift direction.                                                                                                                                 |
+| showLoading          | boolean / node   | false                        | Whether or not to display a loading indicator while the image is loading. If set to true, the default loading indicator will be displayed. If set to false, no loading indicator will be displayed. If set to a JSX element, the specified element will be displayed as the loading indicator. |
+| **_src_** \*         | string           |                              | Source of the image to be displayed. This value should be a valid URL or file path to the image.                                                                                                                                                                                               |
+| style                | object           |                              | Inline styles to be applied to the root element of the Image component.                                                                                                                                                                                                                        |
+| wrapperClassName     | string           | "mui-image-wrapper"          | Class name to be applied to the root `div` element that wraps the Image component.                                                                                                                                                                                                             |
+| wrapperStyle         | object           |                              | Inline styles to be applied to the root `div` element that wraps the Image component.                                                                                                                                                                                                          |
+| sx                   | object           |                              | Allows the user to style the Image component using the theme and style props provided by the MUI library. Used in the same way as the sx prop in other MUI components. Check out [MUI official documentation](https://mui.com/system/getting-started/the-sx-prop/) of the `sx` prop.           |
+| component            | string / node    |                              | Allows the user to specify a custom element to use as the root element for the Image component. Used in the same way as the component prop in other MUI components. Should only be used with elements that are derived from the `img` element.                                                 |
 
 \* required prop
 
-Any other props (eg. `sx`, `onLoad`) are passed directly to the native `img` element.
+Any other props (eg. `src`, `alt`, `onLoad`) are passed directly to the root image element like `img`.
+
+All the description on this table are generated using ChatGPT and edited by me. 👍
 
 ## Material guidelines for loading images
 
@@ -161,19 +304,23 @@ Any other props (eg. `sx`, `onLoad`) are passed directly to the native `img` ele
 
 ## Comparison with similar components
 
-| Feature                       |                                                     `mui-image`                                                      |                                                     `material-ui-image`                                                      |
-| ----------------------------- | :------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------: |
-| Size (minzipped)              | ![npm bundle size](https://img.shields.io/bundlephobia/minzip/mui-image?color=%2343a047&label=%20&style=flat-square) | ![npm bundle size](https://img.shields.io/bundlephobia/minzip/material-ui-image?color=%23b71c1c&label=%20&style=flat-square) |
-| Supports MUI v5               |                                                          ✅                                                          |                                                              ❌                                                              |
-| Fade-in                       |                                                          ✅                                                          |                                                              ✅                                                              |
-| Progressive level adjustments |                                                          ✅                                                          |                                                              ❌                                                              |
-| Suggested duration            |                                                          ✅                                                          |                                                              ✅                                                              |
-| Optional shift animation      |                                                          ✅                                                          |                                                              ❌                                                              |
-| Supports legacy MUI versions  |                                                          ❌                                                          |                                                              ✅                                                              |
+| Feature                       |                                                     `mui-image`                                                      |                                                    `mui-image-alter`                                                       |                                                     `material-ui-image`                                                      |
+| ----------------------------- | :------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------: |
+| Size (minzipped)              | ![npm bundle size](https://img.shields.io/bundlephobia/minzip/mui-image?color=%2343a047&label=%20&style=flat-square) | ![Size from badge.yml](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mddanish00/83c2a74197bb80b661019a2747e71daa/raw/mui-image-alter_size__main.json) | ![npm bundle size](https://img.shields.io/bundlephobia/minzip/material-ui-image?color=%23b71c1c&label=%20&style=flat-square) |
+| Supports MUI v5               |                                                          ✅                                                          |                                                          ✅                                                          |                                                              ❌                                                              |
+| Supports MUI component prop               |                                                          ❌                                                          |                                                          ✅                                                          |                                                              ❌                                                              |
+| Built-in Typescript types               |                                                          ❌                                                          |                                                          ✅                                                          |                                                              ❌                                                              |
+| Fade-in                       |                                                          ✅                                                          |                                                          ✅                                                          |                                                              ✅                                                              |
+| Progressive level adjustments |                                                          ✅                                                          |                                                          ✅                                                          |                                                              ❌                                                              |
+| Suggested duration            |                                                          ✅                                                          |                                                          ✅                                                          |                                                              ✅                                                              |
+| Optional shift animation      |                                                          ✅                                                          |                                                          ✅                                                          |                                                              ❌                                                              |
+| Supports legacy MUI versions  |                                                          ❌                                                          |                                                          ❌                                                          |                                                              ✅                                                              |
 
 ## License
 
-© [benmneb](https://github.com/benmneb)
+Copyright (c) 2022 [benmneb](https://github.com/benmneb/)
+
+Copyright (c) 2023 [mddanish00](https://github.com/mddanish00)
 
 [ISC License](https://choosealicense.com/licenses/isc/)
 
@@ -188,3 +335,9 @@ INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
 LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE. -->
+
+## Other License
+
+The mui-image types from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) project is licensed under [MIT License](https://github.com/DefinitelyTyped/DefinitelyTyped/raw/master/LICENSE).
+
+This component types structure based on types of components created by [Material UI](https://github.com/mui/material-ui) under [MIT License](https://github.com/mui/material-ui/blob/master/LICENSE).
