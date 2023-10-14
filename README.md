@@ -78,6 +78,18 @@ To put it simply, you only needed this if:
 
 ### 1. Install
 
+Install the library dependencies first.
+
+```bash
+npm install @mui/material @emotion/react @emotion/styled use-resize-observer
+```
+
+```bash
+yarn add @mui/material @emotion/react @emotion/styled use-resize-observer
+```
+
+Now, you can install the library using below commands.
+
 ```bash
 npm install github:mddanish00/mui-image-alter
 ```
