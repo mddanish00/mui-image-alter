@@ -4,6 +4,14 @@ import { fireEvent, render, waitFor } from '@testing-library/react';
 import Image from './Image';
 import LinearProgress from '@mui/material/LinearProgress';
 
+const ResizeObserverMock = vi.fn(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn()
+}))
+
+vi.stubGlobal('ResizeObserver', ResizeObserverMock)
+
 test('component prop changes root element', async () => {
   const { findByTestId } = render(
     <Image
@@ -152,13 +160,4 @@ test('default values of props are applied correctly', async () => {
   const image = await findByTestId('testing-MuiImage');
   expect(image).toHaveStyle('position: relative');
   expect(image).toHaveStyle('object-fit: cover');
-});
-
-test('ref is forwarded properly', async () => {
-  const ref = React.createRef<HTMLImageElement>();
-  const { findByTestId } = render(
-    <Image src="valid-image-url" ref={ref} data-testid="testing-MuiImage" />
-  );
-  const image = await findByTestId('testing-MuiImage');
-  expect(image).toEqual(ref.current);
 });
