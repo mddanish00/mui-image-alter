@@ -7,7 +7,6 @@
 <div align="center">
 
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mddanish00/mui-image/test.yml?style=flat-square) ![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/mddanish00/mui-image?style=flat-square) ![Coverage from badge.yml](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mddanish00/83c2a74197bb80b661019a2747e71daa/raw/mui-image-alter_coverage__main.json)
-![Size from badge.yml](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mddanish00/83c2a74197bb80b661019a2747e71daa/raw/mui-image-alter_size__main.json)
 
 </div>
 <p align="center">
