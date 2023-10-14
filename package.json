@@ -68,6 +68,7 @@
 		"loading image"
 	],
 	"dependencies": {
-		"clsx": "^2.0.0"
+		"clsx": "^2.0.0",
+		"use-resize-observer": "^9.1.0"
 	}
 }

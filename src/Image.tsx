@@ -5,6 +5,7 @@ import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import clsx from 'clsx';
+import useResizeObserver from 'use-resize-observer';
 
 import { ImageProps, MuiImage, ImageTypeMap } from './Image.types';
 
@@ -48,10 +49,12 @@ const Image = React.forwardRef(
 			component = 'img',
 			...rest
 		}: ImageProps<BaseComponentType>,
-		ref: React.ForwardedRef<any>,
+		oldRef: React.ForwardedRef<any>,
 	) => {
 		const [loaded, setLoaded] = React.useState(false);
 		const [error, setError] = React.useState(false);
+
+		const { ref, width = 1, height = 1 } = useResizeObserver<any>({ ref: oldRef });
 
 		const handleLoad = React.useCallback(() => {
 			setLoaded(true);
@@ -86,6 +89,8 @@ const Image = React.forwardRef(
 				sx={sx}
 				style={wrapperStyle}
 				bgColor={bgColor}
+				height={height}
+				width={width}
 			>
 				<MuiImageRoot
 					ref={ref}
@@ -180,14 +185,18 @@ const MuiImageRoot = React.memo(
 
 const MuiImageWrapper = React.memo(
 	styled('div', {
-		shouldForwardProp: (prop) => checkProps(prop.toString(), ['bgColor', 'sx']),
+		shouldForwardProp: (prop) => checkProps(prop.toString(), ['bgColor', 'sx', 'height', 'width']),
 	})<{
 		bgColor?: React.CSSProperties['backgroundColor'];
+		height?: React.CSSProperties['height'];
+		width?: React.CSSProperties['width'];
 	}>((props) => ({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
 		backgroundColor: props.bgColor,
+		height: props.height !== 1 ? props.height : '100%',
+		width: props.width !== 1 ? props.width : '100%',
 	})),
 );
 
