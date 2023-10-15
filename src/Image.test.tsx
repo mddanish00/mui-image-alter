@@ -13,14 +13,16 @@ const ResizeObserverMock = vi.fn(() => ({
 vi.stubGlobal('ResizeObserver', ResizeObserverMock)
 
 test('component prop changes root element', async () => {
-  const { findByTestId } = render(
-    <Image
-      src="valid-image-url"
-      component={() => (
-        <img className="different-image-root" data-testid="testing-MuiImage" />
-      )}
-    />
-  );
+  //@ts-ignore
+	const NewImg = React.forwardRef<HTMLImageElement, any>(({ className, ...other }, ref) => (
+		<img
+			ref={ref}
+			className={`different-image-root ${className}`}
+			data-testid="testing-MuiImage"
+			{...other}
+		/>
+	));
+	const { findByTestId } = render(<Image src="valid-image-url" component={NewImg} />);
 
   const image = await findByTestId('testing-MuiImage');
   expect(image.className).toContain('different-image-root');
