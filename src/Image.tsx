@@ -89,8 +89,8 @@ const Image = React.forwardRef(
 				sx={sx}
 				style={wrapperStyle}
 				bgColor={bgColor}
-				height={height}
-				width={width}
+				rootHeight={height !== 1 ? height : '100%'}
+				rootWidth={width !== 1 ? width : '100%'}
 			>
 				<MuiImageRoot
 					ref={ref}
@@ -185,18 +185,19 @@ const MuiImageRoot = React.memo(
 
 const MuiImageWrapper = React.memo(
 	styled('div', {
-		shouldForwardProp: (prop) => checkProps(prop.toString(), ['bgColor', 'sx', 'height', 'width']),
+		shouldForwardProp: (prop) =>
+			checkProps(prop.toString(), ['bgColor', 'sx', 'rootHeight', 'rootWidth']),
 	})<{
 		bgColor?: React.CSSProperties['backgroundColor'];
-		height?: React.CSSProperties['height'];
-		width?: React.CSSProperties['width'];
+		rootHeight?: React.CSSProperties['height'];
+		rootWidth?: React.CSSProperties['width'];
 	}>((props) => ({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
 		backgroundColor: props.bgColor,
-		height: props.height !== 1 ? props.height : '100%',
-		width: props.width !== 1 ? props.width : '100%',
+		height: props.rootHeight,
+		width: props.rootWidth,
 	})),
 );
 
