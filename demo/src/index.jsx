@@ -83,8 +83,8 @@ const DEFAULT_IMAGE = 674;
 
 const SHOW_LOADING = false;
 const ERROR_ICON = true;
-const HEIGHT = '100%';
-const WIDTH = '100%';
+const HEIGHT = '100';
+const WIDTH = '100';
 const SHIFT = false;
 const DISTANCE = '100px';
 const DURATION = 3000;
