@@ -91,21 +91,21 @@ yarn add @mui/material @emotion/react @emotion/styled use-resize-observer
 Now, you can install the library using below commands.
 
 ```bash
-npm install github:mddanish00/mui-image-alter
+npm install github:mddanish00/mui-image
 ```
 
 ```bash
-yarn add mui-image-alter@github:mddanish00/mui-image-alter
+yarn add mui-image-alter@github:mddanish00/mui-image
 ```
 
 Recommended to explicitly provide the tags version like this:
 
 ```bash
-npm install github:mddanish00/mui-image-alter#vx.x.xx
+npm install github:mddanish00/mui-image#vx.x.xx
 ```
 
 ```bash
-yarn add mui-image-alter@github:mddanish00/mui-image-alter#vx.x.xx
+yarn add mui-image-alter@github:mddanish00/mui-image#vx.x.xx
 ```
 
 Replace `x.x.xx` with actual tags from [here](https://github.com/mddanish00/mui-image/tags).
