@@ -27,6 +27,7 @@ jobs:
           SUMMARY="$(npm run test:coverage-ci | tail -2 | head -1)"
           TOKENS=($SUMMARY)
           echo "COVERAGE=$(echo ${TOKENS[2]})" >> $GITHUB_ENV
+          echo "COVERAGE_VAL=$(echo ${TOKENS[2]}  | sed 's/.$//')" >> $GITHUB_ENV
 
       - name: Run size-limit
         run: |
@@ -44,6 +45,7 @@ jobs:
           style: flat-square
           maxColorRange: 90
           minColorRange: 50
+          valColorRange: ${{ env.COVERAGE_VAL }}
           namedLogo: vitest
 
       - name: Create the Size Badge
@@ -54,4 +56,5 @@ jobs:
           filename: mui-image-alter_size__main.json
           label:
           message: ${{ env.SIZE }}
+          color: #43a047
           style: flat-square
