@@ -181,7 +181,7 @@ export function Demo() {
 									.type('npm install https://github.com/mddanish00/mui-image')
 									.pause(1500)
 									.delete()
-									.type("import Image from 'mui-image'");
+									.type("import Image from 'mui-image-alter'");
 
 								return instance;
 							}}
