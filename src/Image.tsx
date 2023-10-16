@@ -85,7 +85,7 @@ const Image = React.forwardRef(
 
 		return (
 			<MuiImageWrapper
-				className={clsx('mui-image-wrapper', wrapperClassName)}
+				className={clsx('MuiImageAlter-wrapper', wrapperClassName)}
 				sx={sx}
 				style={wrapperStyle}
 				bgColor={bgColor}
@@ -98,7 +98,7 @@ const Image = React.forwardRef(
 					src={src}
 					alt={alt}
 					style={style}
-					className={clsx('mui-image-img', className)}
+					className={clsx('MuiImageAlter-img', className)}
 					onLoad={handleLoad}
 					onError={handleError}
 					position={position}
@@ -113,7 +113,7 @@ const Image = React.forwardRef(
 				/>
 				{(Boolean(showLoading) || Boolean(errorIcon)) && (
 					<MuiImageIconWrapper
-						className={clsx('mui-image-iconWrapper', iconWrapperClassName)}
+						className={clsx('MuiImageAlter-iconWrapper', iconWrapperClassName)}
 						style={iconWrapperStyle}
 						loaded={loaded}
 					>
