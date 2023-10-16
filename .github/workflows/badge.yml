@@ -56,5 +56,5 @@ jobs:
           filename: mui-image-alter_size__main.json
           label:
           message: ${{ env.SIZE }}
-          color: #43a047
+          color: "#43a047"
           style: flat-square
