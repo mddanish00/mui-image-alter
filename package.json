@@ -1,6 +1,6 @@
 {
 	"name": "mui-image-alter",
-	"version": "1.0.7",
+	"version": "2.0.0",
 	"description": "Display images as per the Material guidelines. For React apps using Material-UI v5.",
 	"main": "lib/index.js",
 	"module": "es/index.js",
@@ -15,7 +15,7 @@
 		"build:demo": "vite --config vite.democonfig.ts build",
 		"preview": "vite preview",
 		"size": "size-limit",
-		"format":"prettier {demo,src}/**/*.{js,jsx,ts,tsx,json} --write",
+		"format": "prettier {demo,src}/**/*.{js,jsx,ts,tsx,json} --write",
 		"clean": "rimraf dist es lib umd coverage jest-setup.d.ts",
 		"prepare": "npm run build",
 		"preversion": "npm run clean && npm run format",
