@@ -14,6 +14,7 @@ export default defineConfig({
 		buildPlugin({
 			fileBuild: {
 				emitDeclaration: true,
+				rollupOptionsOutput: { interop: 'auto' },
 			},
 			libBuild: {
 				buildOptions: {
