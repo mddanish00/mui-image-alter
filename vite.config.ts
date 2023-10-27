@@ -19,13 +19,14 @@ export default defineConfig({
 			libBuild: {
 				buildOptions: {
 					rollupOptions: {
-						external: ['react', /@mui\/.*/],
+						external: ['react', /@mui\/.*/, 'use-resize-observer'],
 						output: {
 							globals: {
 								react: 'React',
 								'@mui/material/CircularProgress': 'MaterialUI.CircularProgress',
 								'@mui/material/SvgIcon': 'MaterialUI.SvgIcon',
 								'@mui/material/styles/styled': 'MaterialUI.styled',
+								'use-resize-observer': 'UseResizeObserver',
 							},
 						},
 					},
