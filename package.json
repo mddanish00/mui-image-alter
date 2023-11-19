@@ -34,7 +34,7 @@
 	},
 	"devDependencies": {
 		"@fontsource/fira-code": "^5.0.15",
-		"@size-limit/preset-small-lib": "^9.0.0",
+		"@size-limit/preset-small-lib": "^11.0.0",
 		"@testing-library/jest-dom": "^6.1.4",
 		"@testing-library/react": "^14.1.2",
 		"@types/react": "^18.2.37",
@@ -44,7 +44,7 @@
 		"jsdom": "^22.1.0",
 		"prettier": "^3.1.0",
 		"rimraf": "^5.0.5",
-		"size-limit": "^9.0.0",
+		"size-limit": "^11.0.0",
 		"typeit-react": "^2.6.4",
 		"typescript": "^5.2.2",
 		"vite": "^4.5.0",
@@ -53,7 +53,8 @@
 	},
 	"size-limit": [
 		{
-			"path": "es/index.js"
+			"path": "es/index.js",
+			"gzip": true
 		}
 	],
 	"author": "mddanish00",
