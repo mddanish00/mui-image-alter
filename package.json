@@ -3,16 +3,14 @@
 	"version": "2.0.4",
 	"description": "Display images as per the Material guidelines. For React apps using Material-UI v5.",
 	"type": "module",
-	"main": "es/index.js",
-	"types": "es/index.d.ts",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
 	"files": [
-		"es",
-		"lib",
-		"umd"
+		"dist"
 	],
 	"scripts": {
 		"dev": "vite",
-		"build": "vite build",
+		"build": "tsup",
 		"build:demo": "vite --config vite.democonfig.ts build",
 		"preview": "vite preview",
 		"size": "size-limit",
@@ -46,15 +44,15 @@
 		"prettier": "^3.1.0",
 		"rimraf": "^5.0.5",
 		"size-limit": "^11.0.0",
+		"tsup": "^8.0.1",
 		"typeit-react": "^2.6.4",
 		"typescript": "^5.3.2",
 		"vite": "^4.5.0",
-		"vite-plugin-build": "^0.10.0",
 		"vitest": "^0.34.6"
 	},
 	"size-limit": [
 		{
-			"path": "es/index.js",
+			"path": "dist/index.js",
 			"gzip": true
 		}
 	],
