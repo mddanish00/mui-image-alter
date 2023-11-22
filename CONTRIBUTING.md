@@ -16,9 +16,9 @@ Using npm is recommended.
 
 ## Running Tests
 
-- `npm run test` will run the tests on every change.
+- `npm run test` will run the tests once.
 
-- `npm run test:once` will run the tests once.
+- `npm run test:watch` will run the tests on every change.
 
 - `npm run test:coverage` will run the tests once and produce a coverage report in `/coverage`.
 
