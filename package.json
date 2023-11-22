@@ -27,7 +27,7 @@
 		"preview": "vite preview",
 		"size": "size-limit",
 		"format": "prettier {demo,src}/**/*.{js,jsx,ts,tsx,json} --write",
-		"clean": "rimraf dist es lib umd coverage jest-setup.d.ts",
+		"clean": "rimraf dist jest-setup.d.ts",
 		"prepare": "npm run build",
 		"preversion": "npm run clean && npm run format",
 		"postversion": "git push && git push --tags",
@@ -64,6 +64,12 @@
 	},
 	"size-limit": [
 		{
+			"name": "cjs",
+			"path": "dist/index.cjs",
+			"gzip": true
+		},
+		{
+			"name": "esm",
 			"path": "dist/index.js",
 			"gzip": true
 		}
