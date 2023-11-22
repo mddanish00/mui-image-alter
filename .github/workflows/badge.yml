@@ -40,7 +40,7 @@ jobs:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: 83c2a74197bb80b661019a2747e71daa
           filename: mui-image-alter_coverage__main.json
-          label: Coverage
+          label: coverage
           message: ${{ env.COVERAGE }}
           style: flat-square
           maxColorRange: 90
