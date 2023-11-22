@@ -46,15 +46,19 @@ To put it simply, you only needed this if:
 - Breaking Changes
   - Height and width prop forwarded to the component root element (by default, `img`) instead of using CSS to set height and width of component wrapper element. Some alternate image components like `next/image` actually need for height and width prop.
   - Put all styles that set though style prop in styled for better compability with MUI's styled.
+  - (new) Default export only.
+  - (new) No more UMD build.
 
 - Other Changes
   - Rewritten fully in Typescript with types built-in based on MUI component types.
   - Add support to MUI's component prop; That's means you can subtitute component root element with `Image` from `next/image` if you want. Component supported are `img`, `img`-derived HTML element and component with `src` prop.
-  - A lighter UMD build by externalize React and Material UI library. (You need both React and Material UI UMD to use this component.)
+  - Properly map ESM and CJS build with exports and define fallback as specified in [package-json-redirects](https://github.com/andrewbranch/example-subpath-exports-ts-compat/tree/main/examples/node_modules/package-json-redirects) for compability with `moduleResolution: node`.
 
 - Development Changes
-  - Use Vite instead of nwb for development and building the library for fast and better developer experience for me!
+  - Use Vite instead of nwb for development and building the demo for fast and better developer experience for me!
+  - (new) Use tsup for building library.
   - Added unit tests for testing mui-image-alter component. Also, added new Github Action that will automatically run these tests every push and pull request.
+  - (new) Intergrate [release-please](https://github.com/googleapis/release-please) for releases.
 
 ## Simple Q & A
 
@@ -114,12 +118,6 @@ Replace `x.x.xx` with actual tags from [here](https://github.com/mddanish00/mui-
 
 ```jsx
 import Image from 'mui-image-alter'
-
-// or
-
-import { Image } from 'mui-image-alter'
-
-// then
 
 <Image src="my-image.png" />
 ```
