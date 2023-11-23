@@ -46,7 +46,7 @@ To put it simply, you only needed this if:
 - Breaking Changes
   - Height and width prop forwarded to the component root element (by default, `img`) instead of using CSS to set height and width of component wrapper element. Some alternate image components like `next/image` actually need for height and width prop.
   - Put all styles that set though style prop in styled for better compability with MUI's styled.
-  - (new) Default export only.
+  - (new) Default export only. Types can be exported from 'mui-image-alter/ts'
   - (new) No more UMD build.
 
 - Other Changes
@@ -194,7 +194,8 @@ const customImage = styled(Image)({
 You also can use composition to create custom components.
 
 ```ts
-import Image, { ImageProps } from 'mui-image-alter';
+import Image from 'mui-image-alter';
+import { ImageProps } from 'mui-image-alter/ts';
 
 const customImage = ({ className, ...props }: MuiImageProps) => (
   <Image className="some-custom-class" {...props} />
@@ -205,7 +206,8 @@ You also can extend the props by importing props.
 
 ```ts
 import React from 'react';
-import Image, { ImageProps } from 'mui-image-alter';
+import Image from 'mui-image-alter';
+import { ImageProps } from 'mui-image-alter/ts';
 
 type CustomImageProps = ImageProps & {
   customImage: string;
@@ -231,7 +233,8 @@ You can also change the component root element like official MUI components. Onl
 
 ```ts
 import React, { ElementType } from 'react';
-import Image, { ImageProps } from 'mui-image-alter';
+import Image from 'mui-image-alter';
+import { ImageProps } from 'mui-image-alter/ts';
 import NextImage from 'next/image';
 
 type CustomImageProps = ImageProps<typeof NextImage> & {
