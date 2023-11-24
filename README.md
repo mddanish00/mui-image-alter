@@ -46,11 +46,12 @@ To put it simply, you only needed this if:
 - Breaking Changes
   - Height and width prop forwarded to the component root element (by default, `img`) instead of using CSS to set height and width of component wrapper element. Some alternate image components like `next/image` actually need for height and width prop.
   - Put all styles that set though style prop in styled for better compability with MUI's styled.
+  - No UMD build. Go post an issue if you want UMD to be added.
 
 - Other Changes
   - Rewritten fully in Typescript with types built-in based on MUI component types.
   - Add support to MUI's component prop; That's means you can subtitute component root element with `Image` from `next/image` if you want. Component supported are `img`, `img`-derived HTML element and component with `src` prop.
-  - A lighter UMD build by externalize React and Material UI library. (You need both React and Material UI UMD to use this component.)
+  - Properly export esm and cjs build via package.json exports.
 
 - Development Changes
   - Use Vite instead of nwb for development and building the library for fast and better developer experience for me!
@@ -78,17 +79,21 @@ To put it simply, you only needed this if:
 
 ### 1. Install
 
-Install the library dependencies first.
+Install the `mui-image-alter` peer dependencies first. (Can skip if you already done it.)
+
+If you haven't yet install MUI, please follow the [official guide](https://mui.com/material-ui/getting-started/installation/).
+
+Aside from that, install `use-resize-observer` with below instructions.
 
 ```bash
-npm install @mui/material @emotion/react @emotion/styled use-resize-observer
+npm install use-resize-observer
 ```
 
 ```bash
-yarn add @mui/material @emotion/react @emotion/styled use-resize-observer
+yarn add use-resize-observer
 ```
 
-Now, you can install the library using below commands.
+Now, you can install the `mui-image-alter` using below commands.
 
 ```bash
 npm install github:mddanish00/mui-image
