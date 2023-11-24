@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import styled from '@mui/material/styles/styled';
+import { styled } from '@mui/material/styles';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import CircularProgress from '@mui/material/CircularProgress';
 
