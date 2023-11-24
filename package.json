@@ -65,9 +65,15 @@
 	},
 	"size-limit": [
 		{
-			"path": "es/index.js",
+			"name": "cjs",
+			"path": "dist/index.cjs",
 			"gzip": true
-		}
+		  },
+		  {
+			"name": "esm",
+			"path": "dist/index.js",
+			"gzip": true
+		  }
 	],
 	"author": "mddanish00",
 	"contributors": [
