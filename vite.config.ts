@@ -17,7 +17,6 @@ export default defineConfig({
 			fileName: 'index',
 			formats: ['es', 'cjs'],
 		},
-		minify: false,
 		rollupOptions: {
 			external: ['react', /@mui\/.*/, 'use-resize-observer', 'react/jsx-runtime'],
 			output: {
