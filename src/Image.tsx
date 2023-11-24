@@ -54,7 +54,10 @@ const Image = React.forwardRef(
 		const [loaded, setLoaded] = React.useState(false);
 		const [error, setError] = React.useState(false);
 
-		const { ref, width = 1, height = 1 } = useResizeObserver<any>({ ref: oldRef });
+		const { ref, width, height } = useResizeObserver<any>({ ref: oldRef });
+
+		const initialHeight: React.CSSProperties['height'] = rest.height ? rest.height : '100%';
+		const initialWidth: React.CSSProperties['width'] = rest.width ? rest.width : '100%';
 
 		const handleLoad = React.useCallback(() => {
 			setLoaded(true);
@@ -89,8 +92,8 @@ const Image = React.forwardRef(
 				sx={sx}
 				style={wrapperStyle}
 				bgColor={bgColor}
-				rootHeight={height !== 1 ? height : '100%'}
-				rootWidth={width !== 1 ? width : '100%'}
+				rootHeight={height ? height : initialHeight}
+				rootWidth={width ? width : initialWidth}
 			>
 				<MuiImageRoot
 					ref={ref}
