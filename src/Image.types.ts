@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { CSSProperties, ElementType, ReactElement } from 'react';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '@mui/types';
 import { SxProps, Theme } from '@mui/material/styles';
 
@@ -21,7 +21,7 @@ import { SxProps, Theme } from '@mui/material/styles';
  * All types packages by DefinitelyTyped licensed under MIT License.
  */
 
-export type ImageTypeMap<P = {}, D extends React.ElementType = 'img'> = {
+export type ImageTypeMap<P = {}, D extends ElementType = 'img'> = {
 	props: P & {
 		/**
 		 * Text description of the image.
@@ -30,7 +30,7 @@ export type ImageTypeMap<P = {}, D extends React.ElementType = 'img'> = {
 		/**
 		 * Color the image transitions in from.
 		 */
-		bgColor?: React.CSSProperties['backgroundColor'];
+		bgColor?: CSSProperties['backgroundColor'];
 		/**
 		 * ClassName for the component image root element.
 		 */
@@ -48,16 +48,16 @@ export type ImageTypeMap<P = {}, D extends React.ElementType = 'img'> = {
 		 * CSS transition-timing-function value.
 		 * Easing function for the transition when the image finishes loading.
 		 */
-		easing?: React.CSSProperties['transitionTimingFunction'];
+		easing?: CSSProperties['transitionTimingFunction'];
 		/**
 		 * Display default error icon or a custom one.
 		 */
-		errorIcon?: boolean | React.ReactElement;
+		errorIcon?: boolean | ReactElement;
 		/**
 		 * CSS object-fit value.
 		 * Specifies how the image should be resized to fit within its container.
 		 */
-		fit?: React.CSSProperties['objectFit'];
+		fit?: CSSProperties['objectFit'];
 		/**
 		 * ClassName for the icon wrapper.
 		 */
@@ -65,14 +65,14 @@ export type ImageTypeMap<P = {}, D extends React.ElementType = 'img'> = {
 		/**
 		 * Inline styles for the icon wrapper.
 		 */
-		iconWrapperStyle?: React.CSSProperties;
+		iconWrapperStyle?: CSSProperties;
 		onError?: (...args: any[]) => void;
 		onLoad?: (...args: any[]) => void;
 		/**
 		 * CSS position value.
 		 * Specifies the positioning of the image within its container.
 		 */
-		position?: React.CSSProperties['position'];
+		position?: CSSProperties['position'];
 		/**
 		 * Direction for the shift animation.
 		 */
@@ -84,7 +84,7 @@ export type ImageTypeMap<P = {}, D extends React.ElementType = 'img'> = {
 		/**
 		 * Display default loading spinner or a custom one.
 		 */
-		showLoading?: boolean | React.ReactElement;
+		showLoading?: boolean | ReactElement;
 		/**
 		 * Path to the image.
 		 * Should be a valid URL or file path to the image.
@@ -93,7 +93,7 @@ export type ImageTypeMap<P = {}, D extends React.ElementType = 'img'> = {
 		/**
 		 * Inline styles for the component image root element.
 		 */
-		style?: React.CSSProperties;
+		style?: CSSProperties;
 		/**
 		 * The className for the root wrapper.
 		 */
@@ -101,7 +101,7 @@ export type ImageTypeMap<P = {}, D extends React.ElementType = 'img'> = {
 		/**
 		 * Inline styles for the root wrapper.
 		 */
-		wrapperStyle?: React.CSSProperties;
+		wrapperStyle?: CSSProperties;
 		/**
 		 * Defining system overrides as well as additional CSS styles.
 		 * Works same as official MUI components.
@@ -121,6 +121,6 @@ export type ImageTypeMap<P = {}, D extends React.ElementType = 'img'> = {
 export type MuiImage<M extends OverridableTypeMap> = OverridableComponent<M>;
 
 export type ImageProps<
-	D extends React.ElementType = ImageTypeMap['defaultComponent'],
+	D extends ElementType = ImageTypeMap['defaultComponent'],
 	P = {},
 > = OverrideProps<ImageTypeMap<P, D>, D>;

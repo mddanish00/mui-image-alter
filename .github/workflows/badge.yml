@@ -31,7 +31,7 @@ jobs:
 
       - name: Run size-limit
         run: |
-          SIZELIMIT="$(npx size-limit --json | grep 'size' | sed -r 's/^[^:]*:(.*)$/\1/' | npx -y pretty-bytes-cli)"
+          SIZELIMIT="$(npx size-limit --json | grep 'size' -m 1 | sed -r 's/^[^:]*:(.*)$/\1/' | npx -y pretty-bytes-cli)"
           echo "SIZE=$(echo ${SIZELIMIT})" >> $GITHUB_ENV
 
       - name: Create the Coverage Badge
@@ -56,5 +56,5 @@ jobs:
           filename: mui-image-alter_size__main.json
           label:
           message: ${{ env.SIZE }}
-          color: "#43a047"
+          color: '#43a047'
           style: flat-square

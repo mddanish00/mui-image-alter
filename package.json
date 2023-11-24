@@ -2,12 +2,23 @@
 	"name": "mui-image-alter",
 	"version": "2.0.4",
 	"description": "Display images as per the Material guidelines. For React apps using Material-UI v5.",
-	"main": "lib/index.js",
-	"module": "es/index.js",
+	"type": "module",
+	"main": "./dist/index.cjs",
+	"types": "./dist/index.d.cts",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/index.d.ts",
+				"default": "./dist/index.js"
+			},
+			"require": {
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.cjs"
+			}
+		}
+	},
 	"files": [
-		"es",
-		"lib",
-		"umd"
+		"dist"
 	],
 	"scripts": {
 		"dev": "vite",
@@ -16,24 +27,25 @@
 		"preview": "vite preview",
 		"size": "size-limit",
 		"format": "prettier {demo,src}/**/*.{js,jsx,ts,tsx,json} --write",
-		"clean": "rimraf dist es lib umd coverage jest-setup.d.ts",
+		"clean": "rimraf dist es lib umd coverage jest-setup.d.ts mui-image-alter-*",
 		"prepare": "npm run build",
 		"preversion": "npm run clean && npm run format",
 		"postversion": "git push && git push --tags",
-		"test": "vitest",
-		"test:once": "vitest run",
+		"test": "vitest run",
+		"test:watch": "vitest",
 		"test:coverage": "vitest run --coverage",
 		"test:coverage-ci": "vitest run --coverage.enabled --coverage.reporter='text-summary'"
 	},
 	"peerDependencies": {
-		"@emotion/react": "^11.4.1",
-		"@emotion/styled": "^11.3.0",
 		"@mui/material": "^5.0.1",
 		"react": "^17.0.2 || ^18.0.0",
 		"use-resize-observer": "^9.1.0"
 	},
 	"devDependencies": {
+		"@emotion/react": "^11.11.1",
+		"@emotion/styled": "^11.11.0",
 		"@fontsource/fira-code": "^5.0.15",
+		"@mui/types": "^7.2.9",
 		"@size-limit/preset-small-lib": "^11.0.0",
 		"@testing-library/jest-dom": "^6.1.4",
 		"@testing-library/react": "^14.1.2",
@@ -43,17 +55,24 @@
 		"@vitest/coverage-v8": "^0.34.6",
 		"jsdom": "^22.1.0",
 		"prettier": "^3.1.0",
+		"react-dom": "^18.2.0",
 		"rimraf": "^5.0.5",
 		"size-limit": "^11.0.0",
 		"typeit-react": "^2.6.4",
 		"typescript": "^5.3.2",
-		"vite": "^4.5.0",
-		"vite-plugin-build": "^0.10.0",
+		"vite": "^5.0.2",
+		"vite-plugin-dts": "^3.6.3",
 		"vitest": "^0.34.6"
 	},
 	"size-limit": [
 		{
-			"path": "es/index.js",
+			"name": "cjs",
+			"path": "dist/index.cjs",
+			"gzip": true
+		},
+		{
+			"name": "esm",
+			"path": "dist/index.js",
 			"gzip": true
 		}
 	],
