@@ -18,7 +18,7 @@ export default defineConfig({
 			formats: ['es', 'cjs'],
 		},
 		rollupOptions: {
-			external: ['react', /@mui\/.*/, 'use-resize-observer', 'react/jsx-runtime'],
+			external: ['react', /@mui\/.*/, 'use-resize-observer', 'react/jsx-runtime', 'clsx'],
 			output: {
 				interop: 'auto',
 				inlineDynamicImports: true,
