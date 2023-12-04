@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/mddanish00/mui-image/compare/v2.1.0...v2.1.1) (2023-12-04)
+
+
+### Bug Fixes
+
+* add missing clsx in external config ([83e100a](https://github.com/mddanish00/mui-image/commit/83e100a26eb6cca3e1e96f67a6a77c208ac6beec))
+
 ## [2.1.0](https://github.com/mddanish00/mui-image/compare/v2.0.4...v2.1.0) (2023-11-24)
 
 

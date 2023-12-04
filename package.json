@@ -1,6 +1,6 @@
 {
 	"name": "mui-image-alter",
-	"version": "2.1.0",
+	"version": "2.1.1",
 	"description": "Display images as per the Material guidelines. For React apps using Material-UI v5.",
 	"type": "module",
 	"main": "./dist/index.cjs",
