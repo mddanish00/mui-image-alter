@@ -1,7 +1,7 @@
 {
 	"name": "mui-image-alter",
 	"version": "2.1.1",
-	"description": "Display images as per the Material guidelines. For React apps using Material-UI v5.",
+	"description": "Fork of mui-image. Display images as per the Material guidelines. For React apps using Material-UI v5.",
 	"type": "module",
 	"main": "./dist/index.cjs",
 	"types": "./dist/index.d.cts",
@@ -80,9 +80,12 @@
 	"contributors": [
 		"benmneb"
 	],
-	"homepage": "https://mddanish00.github.io/mui-image",
+	"homepage": "https://mddanish00.github.io/mui-image-alter",
 	"license": "ISC",
-	"repository": "https://github.com/mddanish00/mui-image",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mddanish00/mui-image-alter.git"
+	},
 	"keywords": [
 		"material-ui",
 		"material-ui image",
