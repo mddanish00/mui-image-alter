@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import TypeIt from 'typeit-react';
 
-import Image from '../../src';
+import { Image } from '../../src';
 
 import styled from '@mui/material/styles/styled';
 import AppBar from '@mui/material/AppBar';
@@ -83,8 +83,8 @@ const DEFAULT_IMAGE = 674;
 
 const SHOW_LOADING = false;
 const ERROR_ICON = true;
-const HEIGHT = '100';
-const WIDTH = '100';
+const HEIGHT = '500';
+const WIDTH = '500';
 const SHIFT = false;
 const DISTANCE = '100px';
 const DURATION = 3000;
@@ -178,7 +178,7 @@ export function Demo() {
 							getBeforeInit={(instance) => {
 								instance
 									.pause(3500)
-									.type('npm install https://github.com/mddanish00/mui-image')
+									.type('npm install mui-image-alter')
 									.pause(1500)
 									.delete()
 									.type("import Image from 'mui-image-alter'");
@@ -216,7 +216,7 @@ export function Demo() {
 							<NpmIcon fontSize="large" color="inherit" />
 						</IconButton> */}
 						<IconButton
-							onClick={() => window.open('https://github.com/mddanish00/mui-image')}
+							onClick={() => window.open('https://github.com/mddanish00/mui-image-alter')}
 							color="inherit"
 						>
 							<GitHubIcon fontSize="large" color="inherit" />
@@ -257,7 +257,7 @@ export function Demo() {
 									value={height}
 									onChange={(e) => setHeight(e.target.value)}
 								/>
-								"
+								"px
 							</Line>
 						</Tooltip>
 						<Tooltip title="Any valid CSS `width` property" placement="right">
@@ -268,7 +268,7 @@ export function Demo() {
 									value={width}
 									onChange={(e) => setWidth(e.target.value)}
 								/>
-								"
+								"px
 							</Line>
 						</Tooltip>
 						<Tooltip title="Any valid CSS `object-fit` property" placement="right">
