@@ -6,14 +6,14 @@
 </p>
 <div align="center">
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mddanish00/mui-image/test.yml?style=flat-square) ![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/mddanish00/mui-image?style=flat-square) ![Coverage from badge.yml](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mddanish00/83c2a74197bb80b661019a2747e71daa/raw/mui-image-alter_coverage__main.json)
+ ![GitHub License](https://img.shields.io/github/license/mddanish00/mui-image-alter?style=flat-square) ![npm](https://img.shields.io/npm/v/mui-image-alter?style=flat-square)  ![npm bundle size](https://img.shields.io/bundlephobia/minzip/mui-image-alter%40latest?style=flat-square) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mddanish00/mui-image-alter/test.yml?style=flat-square) ![Coverage from badge.yml](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mddanish00/83c2a74197bb80b661019a2747e71daa/raw/mui-image-alter_coverage__main.json) [![Buy Me A Coffee](https://img.shields.io/badge/mddanish00-black?style=flat-square&logo=buymeacoffee&logoColor=black&label=Buy%20Me%20A%20Coffee&labelColor=%23FFDD00)](https://www.buymeacoffee.com/mddanish00)
 
 </div>
 <p align="center">
   The <b>fork</b> by mddanish00. Original project <a href="https://github.com/benmneb/mui-image">here</a>.
 </p>
 <p align="center">
-  <strong><a href="https://mddanish00.github.io/mui-image/">Demo Playground ↗️</a></strong> <br />
+  <strong><a href="https://mddanish00.github.io/mui-image-alter/">Demo Playground ↗️</a></strong> <br />
 </p>
 
 ### If you're already using [Material UI v5](https://material-ui.com), why not display your images according to the Material guidelines too?
@@ -47,6 +47,7 @@ To put it simply, you only needed this if:
   - Height and width prop forwarded to the component root element (by default, `img`) instead of using CSS to set height and width of component wrapper element. Some alternate image components like `next/image` actually need for height and width prop.
   - Put all styles that set though style prop in styled for better compability with MUI's styled.
   - No UMD build. Go post an issue if you want UMD to be added.
+  - Only named exports. Read this [article](https://esbuild.github.io/content-types/#default-interop).
 
 - Other Changes
   - Rewritten fully in Typescript with types built-in based on MUI component types.
@@ -55,16 +56,13 @@ To put it simply, you only needed this if:
 
 - Development Changes
   - Use Vite instead of nwb for development and building the library for fast and better developer experience for me!
-  - Added unit tests for testing mui-image-alter component. Also, added new Github Action that will automatically run these tests every push and pull request.
+  - Added unit tests for testing mui-image-alter component. Also, added new Github Action that will automatically run these tests every pull request.
 
 ## Simple Q & A
 
 - **Q**: Why you created this fork?  
   **A**: MUI's styled don't work very well with the original mui-image because some of default styling and it use style prop instead of using styled to set some of the styling. So, I want to modify a little bit... And I end up doing at lot.  
   Originally, I want to just post an issue for this but I am suck in comunication. 😅
-
-- **Q**: Are you not going to publish on npm?  
-  **A**: Probably not. I don't think there is any demand on this. I am just weird. Maybe if someone post an issue about this and many people comment on that issue, maybe I will do it.
 
 - **Q**: Why you change nwb to Vite?  
   **A**: I just wanted to fork for my own benefit. So, I thought maybe I can write this in TypeScript... but it don't work with nwb. I am so frustrated that I cannot find how to do it and try migarating to Vite instead. (Also, looks like nwb is abandoned too...) It took a lot of work but never thought it work so well...
@@ -83,46 +81,36 @@ Install the `mui-image-alter` peer dependencies first. (Can skip if you already 
 
 If you haven't yet install MUI, please follow the [official guide](https://mui.com/material-ui/getting-started/installation/).
 
-Aside from that, install `use-resize-observer` with below instructions.
+Now, you can install the `mui-image-alter`.
+
+#### Install from npm
 
 ```bash
-npm install use-resize-observer
+npm install mui-image-alter
 ```
 
 ```bash
-yarn add use-resize-observer
+yarn add mui-image-alter
 ```
 
-Now, you can install the `mui-image-alter` using below commands.
+#### Install from repository
+
+Recommended to specify a version tag like this for installation from the repository like below for stability.
 
 ```bash
-npm install github:mddanish00/mui-image
-```
-
-```bash
-yarn add mui-image-alter@github:mddanish00/mui-image
-```
-
-Recommended to explicitly provide the tags version like this:
-
-```bash
-npm install github:mddanish00/mui-image#vx.x.xx
+npm install github:mddanish00/mui-image-alter#vx.x.xx
 ```
 
 ```bash
-yarn add mui-image-alter@github:mddanish00/mui-image#vx.x.xx
+yarn add mui-image-alter@github:mddanish00/mui-image-alter#vx.x.xx
 ```
 
-Replace `x.x.xx` with actual tags from [here](https://github.com/mddanish00/mui-image/tags).
+Replace `x.x.xx` with actual tags from [here](https://github.com/mddanish00/mui-image-alter/tags).
 
 ### 2. Use
 
 ```jsx
-import Image from 'mui-image-alter'
-
-// or
-
-import { Image } from 'mui-image-alter'
+import { Image } from 'mui-image-alter';
 
 // then
 
@@ -188,7 +176,7 @@ With this fork, you can use MUI's styled normally like this. More info on MUI's 
 
 ```ts
 import { styled } from '@mui/material/styles';
-import Image from 'mui-image-alter';
+import { Image } from 'mui-image-alter';
 
 const customImage = styled(Image)({
     margin: 0 auto;
@@ -201,7 +189,7 @@ const customImage = styled(Image)({
 You also can use composition to create custom components.
 
 ```ts
-import Image, { ImageProps } from 'mui-image-alter';
+import { Image, ImageProps } from 'mui-image-alter';
 
 const customImage = ({ className, ...props }: MuiImageProps) => (
   <Image className="some-custom-class" {...props} />
@@ -212,7 +200,7 @@ You also can extend the props by importing props.
 
 ```ts
 import React from 'react';
-import Image, { ImageProps } from 'mui-image-alter';
+import { Image, ImageProps } from 'mui-image-alter';
 
 type CustomImageProps = ImageProps & {
   customImage: string;
@@ -238,7 +226,7 @@ You can also change the component root element like official MUI components. Onl
 
 ```ts
 import React, { ElementType } from 'react';
-import Image, { ImageProps } from 'mui-image-alter';
+import { Image, ImageProps } from 'mui-image-alter';
 import NextImage from 'next/image';
 
 type CustomImageProps = ImageProps<typeof NextImage> & {
@@ -322,7 +310,7 @@ All the description on this table are generated using ChatGPT and edited by me. 
 
 | Feature                       |                                                     `mui-image`                                                      |                                                    `mui-image-alter`                                                       |                                                     `material-ui-image`                                                      |
 | ----------------------------- | :------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------: |
-| Size (minzipped)              | ![npm bundle size](https://img.shields.io/bundlephobia/minzip/mui-image?color=%2343a047&label=%20&style=flat-square) | ![Size from badge.yml](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mddanish00/83c2a74197bb80b661019a2747e71daa/raw/mui-image-alter_size__main.json) | ![npm bundle size](https://img.shields.io/bundlephobia/minzip/material-ui-image?color=%23b71c1c&label=%20&style=flat-square) |
+| Size (minzipped)              | ![npm bundle size](https://img.shields.io/bundlephobia/minzip/mui-image?color=%2343a047&label=%20&style=flat-square) | ![npm bundle size](https://img.shields.io/bundlephobia/minzip/mui-image-alter?color=%23b71c1c&label=%20&style=flat-square) | ![npm bundle size](https://img.shields.io/bundlephobia/minzip/material-ui-image?color=%23b71c1c&label=%20&style=flat-square) |
 | Supports MUI v5               |                                                          ✅                                                          |                                                          ✅                                                          |                                                              ❌                                                              |
 | Supports MUI component prop               |                                                          ❌                                                          |                                                          ✅                                                          |                                                              ❌                                                              |
 | Built-in Typescript types               |                                                          ❌                                                          |                                                          ✅                                                          |                                                              ❌                                                              |
@@ -331,6 +319,14 @@ All the description on this table are generated using ChatGPT and edited by me. 
 | Suggested duration            |                                                          ✅                                                          |                                                          ✅                                                          |                                                              ✅                                                              |
 | Optional shift animation      |                                                          ✅                                                          |                                                          ✅                                                          |                                                              ❌                                                              |
 | Supports legacy MUI versions  |                                                          ❌                                                          |                                                          ❌                                                          |                                                              ✅                                                              |
+
+## Like this project?
+
+Star this project and also the original project too if it is useful for you.
+
+Also, consider buying me a coffee!
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/mddanish00)
 
 ## License
 
