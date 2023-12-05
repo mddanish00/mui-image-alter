@@ -1,7 +1,7 @@
 {
 	"name": "mui-image-alter",
 	"version": "2.1.1",
-	"description": "Fork of mui-image. Display images as per the Material guidelines. For React apps using Material-UI v5.",
+	"description": "Fork of mui-image. Display images as per the Material guidelines using Material-UI v5. With component prop support.",
 	"type": "module",
 	"main": "./dist/index.cjs",
 	"types": "./dist/index.d.cts",
@@ -38,8 +38,7 @@
 	},
 	"peerDependencies": {
 		"@mui/material": "^5.0.1",
-		"react": "^17.0.2 || ^18.0.0",
-		"use-resize-observer": "^9.1.0"
+		"react": "^17.0.2 || ^18.0.0"
 	},
 	"devDependencies": {
 		"@emotion/react": "^11.11.1",
@@ -95,6 +94,7 @@
 		"loading image"
 	],
 	"dependencies": {
-		"clsx": "^2.0.0"
+		"clsx": "^2.0.0",
+		"use-resize-observer": "^9.1.0"
 	}
 }
