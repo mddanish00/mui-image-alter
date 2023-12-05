@@ -30,7 +30,6 @@ export default defineConfig({
 		react(),
 		dts({
 			rollupTypes: true,
-			insertTypesEntry: false,
 			afterBuild: () => {
 				fs.copyFileSync('dist/index.d.cts.d.ts', 'dist/index.d.cts');
 				fs.copyFileSync('dist/index.d.cts.d.ts', 'dist/index.d.ts');
