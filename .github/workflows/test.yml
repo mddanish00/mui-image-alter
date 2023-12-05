@@ -1,7 +1,6 @@
 name: Run Unit Tests
 on:
-  push:
-    branches-ignore: [gh-pages]
+  workflow_dispatch:
   pull_request:
     branches-ignore: [gh-pages]
 
