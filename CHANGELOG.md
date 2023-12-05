@@ -1,5 +1,21 @@
 # Changelog
 
+## [3.0.0](https://github.com/mddanish00/mui-image-alter/compare/v2.1.1...v3.0.0) (2023-12-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* export named only
+
+### Features
+
+* export named only ([0f985d7](https://github.com/mddanish00/mui-image-alter/commit/0f985d72a95c4bb758eac2bbd9aa16cbfb9fb6c5))
+
+
+### Bug Fixes
+
+* update package metadata ([8c7a739](https://github.com/mddanish00/mui-image-alter/commit/8c7a7397c1a300ec80211e31853a81123324a53f))
+
 ## [2.1.1](https://github.com/mddanish00/mui-image/compare/v2.1.0...v2.1.1) (2023-12-04)
 
 
