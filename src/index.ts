@@ -1,7 +1,5 @@
 import Image from './Image';
 
-export default Image;
+import type { ImageProps } from './Image.types';
 
-export { default as Image } from './Image';
-
-export * from './Image.types';
+export { Image, ImageProps };
