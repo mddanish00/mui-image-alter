@@ -149,12 +149,7 @@ test('default values of props are applied correctly', async () => {
 
 test('wrapper get height and width prop as initial props', async () => {
 	const { findByTestId } = render(
-		<Image
-			src="valid-image-url"
-			data-testid="testing-MuiImage"
-			height={200}
-			width={300}
-		/>,
+		<Image src="valid-image-url" data-testid="testing-MuiImage" height={200} width={300} />,
 	);
 	const image = await findByTestId('testing-MuiImage');
 	expect(image.parentElement).toHaveStyle('height: 200px');
