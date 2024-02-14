@@ -22,7 +22,7 @@ export default defineConfig({
 			output: {
 				interop: 'auto',
 				inlineDynamicImports: true,
-				banner: '"use client";'
+				banner: '"use client";',
 			},
 		},
 	},
@@ -41,5 +41,9 @@ export default defineConfig({
 		globals: true,
 		environment: 'jsdom',
 		setupFiles: 'jest-setup.ts',
+		coverage: {
+			provider: 'v8',
+			all: false,
+		},
 	},
 });
