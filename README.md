@@ -6,7 +6,7 @@
 </p>
 <div align="center">
 
- ![GitHub License](https://img.shields.io/github/license/mddanish00/mui-image-alter?style=flat-square) ![npm](https://img.shields.io/npm/v/mui-image-alter?style=flat-square)  ![npm bundle size](https://img.shields.io/bundlephobia/minzip/mui-image-alter%40latest?style=flat-square) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mddanish00/mui-image-alter/test.yml?style=flat-square) ![Coverage from badge.yml](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mddanish00/83c2a74197bb80b661019a2747e71daa/raw/mui-image-alter_coverage__main.json) [![Buy Me A Coffee](https://img.shields.io/badge/mddanish00-black?style=flat-square&logo=buymeacoffee&logoColor=black&label=Buy%20Me%20A%20Coffee&labelColor=%23FFDD00)](https://www.buymeacoffee.com/mddanish00)
+ ![GitHub License](https://img.shields.io/github/license/mddanish00/mui-image-alter?style=flat-square) [![npm](https://img.shields.io/npm/v/mui-image-alter?style=flat-square)](https://www.npmjs.com/package/mui-image-alter)  ![npm bundle size](https://img.shields.io/bundlephobia/minzip/mui-image-alter%40latest?style=flat-square) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mddanish00/mui-image-alter/test.yml?style=flat-square) ![Coverage from badge.yml](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mddanish00/83c2a74197bb80b661019a2747e71daa/raw/mui-image-alter_coverage__main.json) [![Buy Me A Coffee](https://img.shields.io/badge/mddanish00-black?style=flat-square&logo=buymeacoffee&logoColor=black&label=Buy%20Me%20A%20Coffee&labelColor=%23FFDD00)](https://www.buymeacoffee.com/mddanish00)
 
 </div>
 <p align="center">
@@ -84,6 +84,8 @@ If you haven't yet install MUI, please follow the [official guide](https://mui.c
 Now, you can install the `mui-image-alter`.
 
 #### Install from npm
+
+[View library details on npm](https://www.npmjs.com/package/mui-image-alter)
 
 ```bash
 npm install mui-image-alter
