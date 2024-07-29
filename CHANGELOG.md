@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/mddanish00/mui-image-alter/compare/v3.0.0...v3.0.1) (2024-07-29)
+
+
+### Bug Fixes
+
+* add react-dom to peer deps and update deps ([76cf0d7](https://github.com/mddanish00/mui-image-alter/commit/76cf0d7a4a8a014d6039eda7be869c2502398460))
+
 ## [3.0.0](https://github.com/mddanish00/mui-image-alter/compare/v2.1.1...v3.0.0) (2023-12-05)
 
 
