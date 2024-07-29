@@ -36,32 +36,36 @@
 		"test:coverage": "vitest run --coverage",
 		"test:coverage-ci": "vitest run --coverage.enabled --coverage.reporter='text-summary'"
 	},
+	"dependencies": {
+		"clsx": "^2.1.1",
+		"use-resize-observer": "^9.1.0"
+	},
 	"peerDependencies": {
 		"@mui/material": "^5.0.1",
-		"react": "^17.0.2 || ^18.0.0"
+		"react": "^17.0.2 || ^18.0.0",
+		"react-dom": "^17.0.2 || ^18.0.0"
 	},
 	"devDependencies": {
-		"@emotion/react": "^11.11.4",
-		"@emotion/styled": "^11.11.5",
-		"@fontsource/fira-code": "^5.0.17",
-		"@mui/types": "^7.2.14",
-		"@size-limit/preset-small-lib": "^11.1.2",
-		"@testing-library/jest-dom": "^6.4.2",
-		"@testing-library/react": "^14.2.2",
-		"@types/react": "^18.2.74",
-		"@types/react-dom": "^18.2.23",
-		"@vitejs/plugin-react": "^4.2.1",
-		"@vitest/coverage-v8": "^1.4.0",
-		"jsdom": "^24.0.0",
-		"prettier": "^3.2.5",
-		"react-dom": "^18.2.0",
-		"rimraf": "^5.0.5",
-		"size-limit": "^11.1.2",
-		"typeit-react": "^2.7.1",
-		"typescript": "^5.4.3",
-		"vite": "^5.2.8",
-		"vite-plugin-dts": "^3.8.1",
-		"vitest": "^1.4.0"
+		"@emotion/react": "^11.13.0",
+		"@emotion/styled": "^11.13.0",
+		"@fontsource/fira-code": "^5.0.18",
+		"@mui/types": "^7.2.15",
+		"@size-limit/preset-small-lib": "^11.1.4",
+		"@testing-library/jest-dom": "^6.4.8",
+		"@testing-library/react": "^16.0.0",
+		"@types/react": "^18.3.3",
+		"@types/react-dom": "^18.3.0",
+		"@vitejs/plugin-react": "^4.3.1",
+		"@vitest/coverage-v8": "^2.0.4",
+		"jsdom": "^24.1.1",
+		"prettier": "^3.3.3",
+		"rimraf": "^6.0.1",
+		"size-limit": "^11.1.4",
+		"typeit-react": "^2.7.2",
+		"typescript": "^5.5.4",
+		"vite": "^5.3.5",
+		"vite-plugin-dts": "^3.9.1",
+		"vitest": "^2.0.4"
 	},
 	"size-limit": [
 		{
@@ -92,9 +96,5 @@
 		"material design",
 		"react",
 		"loading image"
-	],
-	"dependencies": {
-		"clsx": "^2.1.0",
-		"use-resize-observer": "^9.1.0"
-	}
+	]
 }
