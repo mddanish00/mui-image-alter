@@ -75,7 +75,7 @@ const Image = React.forwardRef(
 			shift !== undefined && shift !== false && shift !== null
 				? {
 						[shift]: loaded ? 0 : distance,
-				  }
+					}
 				: {};
 
 		const showErrorIcon = (typeof errorIcon !== 'boolean' && errorIcon) || (
