@@ -29,11 +29,6 @@ jobs:
           echo "COVERAGE=$(echo ${TOKENS[2]})" >> $GITHUB_ENV
           echo "COVERAGE_VAL=$(echo ${TOKENS[2]}  | sed 's/.$//')" >> $GITHUB_ENV
 
-      - name: Run size-limit
-        run: |
-          SIZELIMIT="$(npx size-limit --json | grep 'size' -m 1 | sed -r 's/^[^:]*:(.*)$/\1/' | npx -y pretty-bytes-cli)"
-          echo "SIZE=$(echo ${SIZELIMIT})" >> $GITHUB_ENV
-
       - name: Create the Coverage Badge
         uses: schneegans/dynamic-badges-action@v1.7.0
         with:
@@ -48,13 +43,3 @@ jobs:
           valColorRange: ${{ env.COVERAGE_VAL }}
           namedLogo: vitest
 
-      - name: Create the Size Badge
-        uses: schneegans/dynamic-badges-action@v1.7.0
-        with:
-          auth: ${{ secrets.GIST_SECRET }}
-          gistID: 83c2a74197bb80b661019a2747e71daa
-          filename: mui-image-alter_size__main.json
-          label:
-          message: ${{ env.SIZE }}
-          color: '#43a047'
-          style: flat-square
