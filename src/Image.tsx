@@ -48,7 +48,7 @@ const Image = React.forwardRef(
 			sx,
 			component = 'img',
 			...rest
-		}: ImageProps<BaseComponentType>,
+		}: React.PropsWithoutRef<ImageProps<BaseComponentType>>,
 		oldRef: React.ForwardedRef<any>,
 	) => {
 		const [loaded, setLoaded] = React.useState(false);
