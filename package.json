@@ -41,7 +41,7 @@
 		"use-resize-observer": "^9.1.0"
 	},
 	"peerDependencies": {
-		"@mui/material": "^5.0.1",
+		"@mui/material": "^5.0.0 || ^6.0.0",
 		"react": "^17.0.0 || ^18.0.0",
 		"react-dom": "^17.0.0 || ^18.0.0"
 	},

@@ -79,7 +79,7 @@ To put it simply, you only needed this if:
 
 Install the `mui-image-alter` peer dependencies first. (Can skip if you already done it.)
 
-If you haven't yet install MUI, please follow the [official guide](https://mui.com/material-ui/getting-started/installation/).
+If you haven't yet install MUI, please follow the [official guide](https://mui.com/material-ui/getting-started/installation/). Only MUI v5 or v6 are supported. 
 
 Now, you can install the `mui-image-alter`.
 
@@ -121,7 +121,7 @@ import { Image } from 'mui-image-alter';
 
 ### 3. Profit 💰
 
-_Note: Profits not guaranteed and Material UI v5 is a peer dependency. If you need to support legacy versions of Material UI, use [`material-ui-image`](https://github.com/TeamWertarbyte/material-ui-image) instead. See the [comparison chart](#comparison-with-similar-components) below for more._
+_Note: Profits not guaranteed and Material UI v5 or v6 is a peer dependency. If you need to support legacy versions of Material UI, use [`material-ui-image`](https://github.com/TeamWertarbyte/material-ui-image) instead. See the [comparison chart](#comparison-with-similar-components) below for more._
 
 ## Usage Examples
 
@@ -313,7 +313,7 @@ All the description on this table are generated using ChatGPT and edited by me. 
 | Feature                       |                                                     `mui-image`                                                      |                                                    `mui-image-alter`                                                       |                                                     `material-ui-image`                                                      |
 | ----------------------------- | :------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------: |
 | Size (minzipped)              | ![npm bundle size](https://img.shields.io/bundlephobia/minzip/mui-image?color=%2343a047&label=%20&style=flat-square) | ![npm bundle size](https://img.shields.io/bundlephobia/minzip/mui-image-alter?color=%23b71c1c&label=%20&style=flat-square) | ![npm bundle size](https://img.shields.io/bundlephobia/minzip/material-ui-image?color=%23b71c1c&label=%20&style=flat-square) |
-| Supports MUI v5               |                                                          ✅                                                          |                                                          ✅                                                          |                                                              ❌                                                              |
+| Supports MUI v5/v6               |                                                          ✅                                                          |                                                          ✅                                                          |                                                              ❌                                                              |
 | Supports MUI component prop               |                                                          ❌                                                          |                                                          ✅                                                          |                                                              ❌                                                              |
 | Built-in Typescript types               |                                                          ❌                                                          |                                                          ✅                                                          |                                                              ❌                                                              |
 | Fade-in                       |                                                          ✅                                                          |                                                          ✅                                                          |                                                              ✅                                                              |
