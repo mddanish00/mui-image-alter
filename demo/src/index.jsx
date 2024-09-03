@@ -42,10 +42,10 @@ const theme = createTheme({
 // 	'YarnIcon'
 // );
 
-// const NpmIcon = createSvgIcon(
-// 	<path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669v-.001zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.331zM10.665 10H12v2.667h-1.335V10z" />,
-// 	'NpmIcon'
-// );
+const NpmIcon = createSvgIcon(
+	<path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669v-.001zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.331zM10.665 10H12v2.667h-1.335V10z" />,
+	'NpmIcon'
+);
 
 const GitHubIcon = createSvgIcon(
 	<path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27" />,
@@ -208,13 +208,13 @@ export function Demo() {
 								fontSize="large"
 								color="inherit"
 							/>
-						</IconButton>
+						</IconButton> */}
 						<IconButton
-							onClick={() => window.open('https://npmjs.com/package/mui-image')}
+							onClick={() => window.open('https://npmjs.com/package/mui-image-alter')}
 							color="inherit"
 						>
 							<NpmIcon fontSize="large" color="inherit" />
-						</IconButton> */}
+						</IconButton>
 						<IconButton
 							onClick={() => window.open('https://github.com/mddanish00/mui-image-alter')}
 							color="inherit"
