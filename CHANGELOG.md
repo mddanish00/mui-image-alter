@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.1.0](https://github.com/mddanish00/mui-image-alter/compare/v3.0.1...v3.1.0) (2024-09-03)
+
+
+### Features
+
+* add support MUI v6 ([1da06f7](https://github.com/mddanish00/mui-image-alter/commit/1da06f7596864b35c188556422c96c1c3a8fff59))
+
+
+### Bug Fixes
+
+* adjust react peer minimum to 17.0.0 as mui v6 ([23e62fb](https://github.com/mddanish00/mui-image-alter/commit/23e62fb0d70841164b0badcb99fb9f937f28e700))
+* fix type error introduced by @types/react ([286265d](https://github.com/mddanish00/mui-image-alter/commit/286265d79e2332e28e92a056342286bdc86afa27))
+
 ## [3.0.1](https://github.com/mddanish00/mui-image-alter/compare/v3.0.0...v3.0.1) (2024-07-29)
 
 
