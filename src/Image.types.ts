@@ -1,4 +1,8 @@
-import { OverrideProps, OverridableComponent, OverridableTypeMap } from '@mui/types';
+import {
+	OverridableComponent,
+	OverridableTypeMap,
+	OverrideProps,
+} from '@mui/material/OverridableComponent';
 import { SxProps, Theme } from '@mui/material/styles';
 
 /**
