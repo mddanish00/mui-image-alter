@@ -16,7 +16,7 @@
   <strong><a href="https://mddanish00.github.io/mui-image-alter/">Demo Playground ↗️</a></strong> <br />
 </p>
 
-### If you're already using [Material UI v5](https://material-ui.com), why not display your images according to the Material guidelines too?
+### If you're already using [Material UI v5 or v6](https://material-ui.com), why not display your images according to the Material guidelines too?
 
 > Illustrations and photographs may load and transition in three phases at staggered durations, rather than relying on opacity changes alone.
 >
@@ -28,56 +28,57 @@
 
 Alter from alternative.
 
-I actually just to make a fork with small modification for my website but somehow I ended changed many things... How it became like this?
+I just to make a fork with small modifications for my website but somehow I ended up changing many things... How did it become like this?
 
 ### Why should I use this?
 
-If you satisfied with original project, you probably not need this. This is for users with a specific need.
+If you are satisfied with the original project, you probably not need this. This is for users with a specific need.
 
 To put it simply, you only needed this if:
 
-- You want to change the component root element, `img` with other component like `Image` from `next/image`.
-- You want to use `styled` function from `styled-components` or `emotion`  or `MUI` on `Image` component but noticed some style not working properly.[^1]
+- You want to change the component root element, `img` with another component like `Image` from `next/image`.
+- You want to use `styled` function from `styled-components` or `emotion`  or `MUI` on `Image` component but noticed some styles are not working properly.[^1]
 
-[^1]: This happen on original project because the styles set using style prop. To correct this for original project, you need to use style or wrapperStyle or iconWrapperStyle that provided to overwrite the default style.
+[^1]: This happens on the original project because the styles were set using style props. To correct this for the original project, you need to use style or wrapperStyle or iconWrapperStyle that provided to overwrite the default style.
 
 ### Changes in this fork
 
 - Breaking Changes
-  - Height and width prop forwarded to the component root element (by default, `img`) instead of using CSS to set height and width of component wrapper element. Some alternate image components like `next/image` actually need for height and width prop.
-  - Put all styles that set though style prop in styled for better compability with MUI's styled.
+  - Height and width prop forwarded to the component root element (by default, `img`) instead of using CSS to set the height and width of the component wrapper element. Some alternate image components like `next/image` actually need for height and width prop.
+  - Put all styles that set through style prop in styled for better compatibility with MUI's styled.
   - No UMD build. Go post an issue if you want UMD to be added.
   - Only named exports. Read this [article](https://esbuild.github.io/content-types/#default-interop).
 
 - Other Changes
   - Rewritten fully in Typescript with types built-in based on MUI component types.
-  - Add support to MUI's component prop; That's means you can subtitute component root element with `Image` from `next/image` if you want. Component supported are `img`, `img`-derived HTML element and component with `src` prop.
+  - Add support to MUI's component prop; That means you can substitute the component root element with `Image` from `next/image` if you want. Components supported are `img`, `img`-derived HTML element and component with `src` prop.
   - Properly export esm and cjs build via package.json exports.
+  - (NEW) Support for MUI v6 added.
 
 - Development Changes
   - Use Vite instead of nwb for development and building the library for fast and better developer experience for me!
-  - Added unit tests for testing mui-image-alter component. Also, added new Github Action that will automatically run these tests every pull request.
+  - Added unit tests for testing the mui-image-alter component. Also, added a new Github Action that will automatically run these tests for every pull request.
 
 ## Simple Q & A
 
 - **Q**: Why you created this fork?  
-  **A**: MUI's styled don't work very well with the original mui-image because some of default styling and it use style prop instead of using styled to set some of the styling. So, I want to modify a little bit... And I end up doing at lot.  
-  Originally, I want to just post an issue for this but I am suck in comunication. 😅
+  **A**: MUI's styled don't work very well with the original mui-image because some of the default styling and it use style prop instead of using styled to set some of the styling. So, I want to modify a little bit... And I end up doing a lot.  
+  Originally, I want to just post an issue for this but I suck in communication. 😅
 
 - **Q**: Why you change nwb to Vite?  
-  **A**: I just wanted to fork for my own benefit. So, I thought maybe I can write this in TypeScript... but it don't work with nwb. I am so frustrated that I cannot find how to do it and try migarating to Vite instead. (Also, looks like nwb is abandoned too...) It took a lot of work but never thought it work so well...
+  **A**: I just wanted to fork for my own benefit. So, I thought maybe I could write this in TypeScript... but it doesn't work with nwb. I am so frustrated that I cannot find how to do it and try migrating to Vite instead. (Also, looks like nwb is abandoned too...) It took a lot of work but never thought it work so well...
   Maybe there is actually a way to use Typescript with nwb but I never regret switching to Vite.
 
   Vite is so fast!!! 😍
 
-- **Q**: Will you intergrate changes from the original project?  
+- **Q**: Will you integrate changes from the original project?  
   **A**: Yeah. As many as possible. 💪
 
 ---
 
 ### 1. Install
 
-Install the `mui-image-alter` peer dependencies first. (Can skip if you already done it.)
+Install the `mui-image-alter` peer dependencies first. (Can skip if you have already done it.)
 
 If you haven't yet install MUI, please follow the [official guide](https://mui.com/material-ui/getting-started/installation/). Only MUI v5 or v6 are supported. 
 
