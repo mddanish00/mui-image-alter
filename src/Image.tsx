@@ -1,19 +1,11 @@
 import * as React from 'react';
 
 import { styled } from '@mui/material/styles';
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
-import CircularProgress from '@mui/material/CircularProgress';
 
 import clsx from 'clsx';
-import useResizeObserver from 'use-resize-observer';
 
 import { ImageProps, MuiImage, ImageTypeMap } from './Image.types';
-
-const BrokenImageIcon = (props: SvgIconProps) => (
-	<SvgIcon {...props}>
-		<path d="M21 5v6.59l-2.29-2.3c-.39-.39-1.03-.39-1.42 0L14 12.59 10.71 9.3a.9959.9959 0 0 0-1.41 0L6 12.59 3 9.58V5c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2zm-3 6.42 3 3.01V19c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2v-6.58l2.29 2.29c.39.39 1.02.39 1.41 0l3.3-3.3 3.29 3.29c.39.39 1.02.39 1.41 0l3.3-3.28z" />
-	</SvgIcon>
-);
+import useImage from './useImage';
 
 /**
  * A custom image component that satisfy the Material guidelines for loading images.
@@ -49,41 +41,31 @@ const Image = React.forwardRef(
 			component = 'img',
 			...rest
 		}: React.PropsWithoutRef<ImageProps<BaseComponentType>>,
-		oldRef: React.ForwardedRef<any>,
+		componentRef: React.ForwardedRef<any>,
 	) => {
-		const [loaded, setLoaded] = React.useState(false);
-		const [error, setError] = React.useState(false);
-
-		const { ref, width, height } = useResizeObserver<any>({ ref: oldRef });
-
-		const initialHeight: React.CSSProperties['height'] = rest.height ? rest.height : '100%';
-		const initialWidth: React.CSSProperties['width'] = rest.width ? rest.width : '100%';
-
-		const handleLoad = React.useCallback(() => {
-			setLoaded(true);
-			setError(false);
-			if (onLoadProp) onLoadProp();
-		}, [onLoadProp]);
-
-		const handleError = React.useCallback(() => {
-			setError(true);
-			setLoaded(false);
-			if (onErrorProp) onErrorProp();
-		}, [onErrorProp]);
-
-		const shiftStyles =
-			shift !== undefined && shift !== false && shift !== null
-				? {
-						[shift]: loaded ? 0 : distance,
-					}
-				: {};
-
-		const showErrorIcon = (typeof errorIcon !== 'boolean' && errorIcon) || (
-			<BrokenImageIcon sx={{ fontSize: 56, color: '#bdbdbd' }} /> // MUI grey[400]
-		);
-
-		const loadingIndicator = (typeof showLoading !== 'boolean' && showLoading) || (
-			<CircularProgress size={56} thickness={6} />
+		const {
+			loaded,
+			error,
+			observedRef,
+			currentHeight,
+			currentWidth,
+			initialHeight,
+			initialWidth,
+			handleLoad,
+			handleError,
+			showErrorIcon,
+			loadingIndicator,
+			shiftStyles,
+		} = useImage(
+			componentRef,
+			shift,
+			distance,
+			errorIcon,
+			showLoading,
+			rest.height,
+			rest.width,
+			onLoadProp,
+			onErrorProp,
 		);
 
 		return (
@@ -92,11 +74,11 @@ const Image = React.forwardRef(
 				sx={sx}
 				style={wrapperStyle}
 				bgColor={bgColor}
-				rootHeight={height ? height : initialHeight}
-				rootWidth={width ? width : initialWidth}
+				rootHeight={currentHeight ? currentHeight : initialHeight}
+				rootWidth={currentWidth ? currentWidth : initialWidth}
 			>
 				<MuiImageRoot
-					ref={ref}
+					ref={observedRef}
 					as={component}
 					src={src}
 					alt={alt}
