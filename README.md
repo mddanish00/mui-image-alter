@@ -6,7 +6,7 @@
 </p>
 <div align="center">
 
- ![GitHub License](https://img.shields.io/github/license/mddanish00/mui-image-alter?style=flat-square) [![npm](https://img.shields.io/npm/v/mui-image-alter?style=flat-square)](https://www.npmjs.com/package/mui-image-alter)  ![npm bundle size](https://img.shields.io/bundlephobia/minzip/mui-image-alter%40latest?style=flat-square) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mddanish00/mui-image-alter/test.yml?style=flat-square) ![Coverage from badge.yml](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mddanish00/83c2a74197bb80b661019a2747e71daa/raw/mui-image-alter_coverage__main.json) [![Buy Me A Coffee](https://img.shields.io/badge/mddanish00-black?style=flat-square&logo=buymeacoffee&logoColor=black&label=Buy%20Me%20A%20Coffee&labelColor=%23FFDD00)](https://www.buymeacoffee.com/mddanish00)
+ ![GitHub License](https://img.shields.io/github/license/mddanish00/mui-image-alter?style=flat-square) [![npm](https://img.shields.io/npm/v/mui-image-alter?style=flat-square)](https://www.npmjs.com/package/mui-image-alter)  ![npm bundle size](https://img.shields.io/bundlephobia/minzip/mui-image-alter%40latest?style=flat-square) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mddanish00/mui-image-alter/test.yml?style=flat-square) ![Coverage from badge.yml](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mddanish00/83c2a74197bb80b661019a2747e71daa/raw/mui-image-alter_coverage__main.json) [![Buy Me A Coffee](https://img.shields.io/badge/mddanish00-black?style=flat-square&logo=buymeacoffee&logoColor=black&label=Buy%20Me%20A%20Coffee&labelColor=%23FFDD00)](https://www.buymeacoffee.com/mddanish00) [![Ko-fi](https://img.shields.io/badge/mddanish00-%2372A4F2?style=flat-square&logo=kofi&label=Ko-fi&labelColor=%23F4EFE7)](https://ko-fi.com/mddanish00)
 
 </div>
 <p align="center">
@@ -328,6 +328,8 @@ All the description on this table are generated using ChatGPT and edited by me. 
 Star this project and also the original project too if it is useful for you.
 
 Also, consider buying me a coffee!
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/mddanish00)
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/mddanish00)
 
