@@ -175,7 +175,7 @@ If you want to get fancy 💃 you can also add inline styles and additional `cla
 
 ### Fork Exclusive Usage
 
-With this fork, you can use MUI's styled normally like this. More info on MUI's [official doccumentation](https://mui.com/system/styled/).
+With this fork, you can use MUI's styled normally like this. More info on MUI's [official documentation](https://mui.com/system/styled/).
 
 ```ts
 import { styled } from '@mui/material/styles';
@@ -331,7 +331,7 @@ Also, consider buying me a coffee!
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/mddanish00)
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/mddanish00)
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/mddanish00)
 
 ## License
 
