@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import TypeIt from 'typeit-react';
+//import TypeIt from 'typeit-react';
 
 import { Image } from '../../src';
 
@@ -174,7 +174,8 @@ export function Demo() {
 						component="div"
 						sx={{ flexGrow: 1, display: { xs: 'none', md: 'inline-block' } }}
 					>
-						<TypeIt
+						{/* Disable TypeIt temporarily until package peer React updated. */}
+						{/* <TypeIt
 							getBeforeInit={(instance) => {
 								instance
 									.pause(3500)
@@ -186,7 +187,8 @@ export function Demo() {
 								return instance;
 							}}
 							options={{ speed: 120, cursor: false }}
-						/>
+						/> */}
+						import Image from 'mui-image-alter'
 					</Typography>
 					<Typography
 						variant="h6"
