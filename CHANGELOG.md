@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.2.0](https://github.com/mddanish00/mui-image-alter/compare/v3.1.0...v3.2.0) (2024-12-10)
+
+
+### Features
+
+* :arrow_up: add React 19 support ([892c9ed](https://github.com/mddanish00/mui-image-alter/commit/892c9ed9d2f2095fd59080058f156f43270db27c))
+* :recycle: replace and implement own useResizeObserver ([d18cf9b](https://github.com/mddanish00/mui-image-alter/commit/d18cf9b1e9c47d2970c091b8f287ab4494920406))
+
 ## [3.1.0](https://github.com/mddanish00/mui-image-alter/compare/v3.0.1...v3.1.0) (2024-09-03)
 
 
