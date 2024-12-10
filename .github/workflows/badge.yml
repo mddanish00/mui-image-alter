@@ -1,7 +1,8 @@
 name: Generate Badge
 on:
   push:
-    branches: [main]
+    tags:
+      - '*'
 jobs:
   build:
     runs-on: ubuntu-latest
