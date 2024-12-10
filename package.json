@@ -1,7 +1,7 @@
 {
 	"name": "mui-image-alter",
 	"version": "3.1.0",
-	"description": "Fork of mui-image. Display images as per the Material guidelines using Material-UI v5. With component prop support.",
+	"description": "Fork of mui-image. Display images as per the Material guidelines using Material-UI v5 or v6. With component prop support.",
 	"type": "module",
 	"main": "./dist/index.cjs",
 	"types": "./dist/index.d.cts",
@@ -29,42 +29,42 @@
 		"format": "prettier {demo,src}/**/*.{js,jsx,ts,tsx,json} --write",
 		"clean": "rimraf dist es lib umd coverage jest-setup.d.ts mui-image-alter-*",
 		"prepare": "npm run build",
-		"preversion": "npm run clean && npm run format",
-		"postversion": "git push && git push --tags",
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"test:coverage": "vitest run --coverage",
 		"test:coverage-ci": "vitest run --coverage.enabled --coverage.reporter='text-summary'"
 	},
 	"dependencies": {
-		"clsx": "^2.1.1",
-		"use-resize-observer": "^9.1.0"
+		"clsx": "^2.1.1"
 	},
 	"peerDependencies": {
 		"@mui/material": "^5.0.0 || ^6.0.0",
-		"react": "^17.0.0 || ^18.0.0",
-		"react-dom": "^17.0.0 || ^18.0.0"
+		"react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+		"react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
 	},
 	"devDependencies": {
-		"@emotion/react": "^11.13.3",
-		"@emotion/styled": "^11.13.0",
+		"@emotion/react": "^11.14.0",
+		"@emotion/styled": "^11.14.0",
 		"@fontsource/fira-code": "^5.1.0",
-		"@size-limit/preset-small-lib": "^11.1.5",
-		"@testing-library/jest-dom": "^6.5.0",
-		"@testing-library/react": "^16.0.1",
-		"@types/react": "^18.3.7",
-		"@types/react-dom": "^18.3.0",
-		"@vitejs/plugin-react": "^4.3.1",
-		"@vitest/coverage-v8": "^2.1.1",
-		"jsdom": "^25.0.0",
-		"prettier": "^3.3.3",
+		"@mui/material": "^6.1.10",
+		"@size-limit/preset-small-lib": "^11.1.6",
+		"@testing-library/jest-dom": "^6.6.3",
+		"@testing-library/react": "^16.1.0",
+		"@types/node": "^20.17.9",
+		"@types/react": "^19.0.1",
+		"@types/react-dom": "^19.0.1",
+		"@vitejs/plugin-react": "^4.3.4",
+		"@vitest/coverage-v8": "^2.1.8",
+		"jsdom": "^25.0.1",
+		"prettier": "^3.4.2",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
 		"rimraf": "^6.0.1",
-		"size-limit": "^11.1.5",
-		"typeit-react": "^2.7.3",
-		"typescript": "^5.6.2",
-		"vite": "^5.4.6",
-		"vite-plugin-dts": "^4.2.1",
-		"vitest": "^2.1.1"
+		"size-limit": "^11.1.6",
+		"typescript": "^5.7.2",
+		"vite": "^6.0.3",
+		"vite-plugin-dts": "^4.3.0",
+		"vitest": "^2.1.8"
 	},
 	"size-limit": [
 		{
@@ -95,5 +95,11 @@
 		"material design",
 		"react",
 		"loading image"
+	],
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/mddanish00/mui-image-alter?sponsor=1"
+		}
 	]
 }
