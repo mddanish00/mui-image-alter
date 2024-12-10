@@ -5,9 +5,9 @@ import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import clsx from 'clsx';
-import useResizeObserver from 'use-resize-observer';
 
 import { ImageProps, MuiImage, ImageTypeMap } from './Image.types';
+import useResizeObserver from './useResizeObserver';
 
 const BrokenImageIcon = (props: SvgIconProps) => (
 	<SvgIcon {...props}>
@@ -49,12 +49,12 @@ const Image = React.forwardRef(
 			component = 'img',
 			...rest
 		}: React.PropsWithoutRef<ImageProps<BaseComponentType>>,
-		oldRef: React.ForwardedRef<any>,
+		oldRef: any,
 	) => {
 		const [loaded, setLoaded] = React.useState(false);
 		const [error, setError] = React.useState(false);
 
-		const { ref, width, height } = useResizeObserver<any>({ ref: oldRef });
+		const { ref, width, height } = useResizeObserver<any>({ observeRef: oldRef });
 
 		const initialHeight: React.CSSProperties['height'] = rest.height ? rest.height : '100%';
 		const initialWidth: React.CSSProperties['width'] = rest.width ? rest.width : '100%';
@@ -199,8 +199,8 @@ const MuiImageWrapper = React.memo(
 		justifyContent: 'center',
 		alignItems: 'center',
 		backgroundColor: props.bgColor,
-		height: props.rootHeight,
-		width: props.rootWidth,
+		height: `${props.rootHeight}px`,
+		width: `${props.rootWidth}px`,
 	})),
 );
 
