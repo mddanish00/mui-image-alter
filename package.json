@@ -46,6 +46,7 @@
 		"@emotion/react": "^11.14.0",
 		"@emotion/styled": "^11.14.0",
 		"@fontsource/fira-code": "^5.1.0",
+		"@juggle/resize-observer": "^3.4.0",
 		"@mui/material": "^6.1.10",
 		"@size-limit/preset-small-lib": "^11.1.6",
 		"@testing-library/jest-dom": "^6.6.3",

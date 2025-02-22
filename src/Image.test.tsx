@@ -1,16 +1,12 @@
 import React from 'react';
 import { expect, test, vi } from 'vitest';
 import { fireEvent, render, waitFor } from '@testing-library/react';
+import { ResizeObserver as Polyfill } from '@juggle/resize-observer';
+
 import Image from './Image';
 import LinearProgress from '@mui/material/LinearProgress';
 
-const ResizeObserverMock = vi.fn(() => ({
-	observe: vi.fn(),
-	unobserve: vi.fn(),
-	disconnect: vi.fn(),
-}));
-
-vi.stubGlobal('ResizeObserver', ResizeObserverMock);
+vi.stubGlobal('ResizeObserver', Polyfill);
 
 test('component prop changes root element', async () => {
 	//@ts-ignore
@@ -30,13 +26,13 @@ test('component prop changes root element', async () => {
 });
 
 test('displays loading indicator when showLoading prop is set to true', async () => {
-	const { findByRole } = render(<Image src="" showLoading={true} />);
+	const { findByRole } = render(<Image src="invalid-image-url" showLoading={true} />);
 	const loadingIndicator = await findByRole('progressbar');
 	expect(loadingIndicator).toBeInTheDocument();
 });
 
 test('displays custom loading indicator when image fails to load', async () => {
-	const { findByRole } = render(<Image src="" showLoading={<LinearProgress />} />);
+	const { findByRole } = render(<Image src="invalid-image-url" showLoading={<LinearProgress />} />);
 	const loadingIndicator = await findByRole('progressbar');
 	expect(loadingIndicator).toBeInTheDocument();
 });
