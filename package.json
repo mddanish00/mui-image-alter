@@ -62,6 +62,7 @@
 		"react-dom": "^19.1.0",
 		"rimraf": "^6.0.1",
 		"size-limit": "^11.2.0",
+		"typeit-react": "^2.7.8",
 		"typescript": "^5.8.2",
 		"vite": "^6.2.3",
 		"vite-plugin-dts": "^4.5.3",
