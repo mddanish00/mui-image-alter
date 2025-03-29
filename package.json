@@ -1,7 +1,7 @@
 {
 	"name": "mui-image-alter",
 	"version": "3.3.0",
-	"description": "Fork of mui-image. Display images as per the Material guidelines using Material-UI v5 or v6. With component prop support.",
+	"description": "Fork of mui-image. Display images as per the Material guidelines using Material-UI v5 and above. With component prop support.",
 	"type": "module",
 	"main": "./dist/index.cjs",
 	"types": "./dist/index.d.cts",

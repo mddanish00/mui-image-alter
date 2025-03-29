@@ -16,7 +16,7 @@
   <strong><a href="https://mddanish00.github.io/mui-image-alter/">Demo Playground ↗️</a></strong> <br />
 </p>
 
-### If you're already using [Material UI v5 or v6](https://material-ui.com), why not display your images according to the Material guidelines too?
+### If you're already using [Material UI v5 and above](https://material-ui.com), why not display your images according to the Material guidelines too?
 
 > Illustrations and photographs may load and transition in three phases at staggered durations, rather than relying on opacity changes alone.
 >
