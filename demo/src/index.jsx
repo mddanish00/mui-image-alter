@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { Image } from '../../src';
 
-import styled from '@mui/material/styles/styled';
+import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
