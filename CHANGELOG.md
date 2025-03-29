@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.3.0](https://github.com/mddanish00/mui-image-alter/compare/v3.2.0...v3.3.0) (2025-03-29)
+
+
+### Features
+
+* :arrow_up: upgrade to MUI v7 ([2e20550](https://github.com/mddanish00/mui-image-alter/commit/2e20550de39ec9d23bb8e93914b298b3e27acbfe))
+
 ## [3.2.0](https://github.com/mddanish00/mui-image-alter/compare/v3.1.0...v3.2.0) (2024-12-10)
 
 
