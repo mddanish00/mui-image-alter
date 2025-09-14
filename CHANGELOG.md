@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.0](https://github.com/mddanish00/mui-image-alter/compare/v3.3.0...v3.4.0) (2025-09-14)
+
+
+### Features
+
+* update to vite v7 ([21c9d1a](https://github.com/mddanish00/mui-image-alter/commit/21c9d1a639241aca58e38c439493c3901ea9f8a0))
+
 ## [3.3.0](https://github.com/mddanish00/mui-image-alter/compare/v3.2.0...v3.3.0) (2025-03-29)
 
 
