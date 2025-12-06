@@ -41,7 +41,7 @@ export default defineConfig({
 		setupFiles: 'jest-setup.ts',
 		coverage: {
 			provider: 'v8',
-			all: false,
 		},
+		dir: 'src',
 	},
 });
