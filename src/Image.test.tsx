@@ -151,3 +151,123 @@ test('wrapper get height and width prop as initial props', async () => {
 	expect(image.parentElement).toHaveStyle('height: 200px');
 	expect(image.parentElement).toHaveStyle('width: 300px');
 });
+
+test('showLoading=false and errorIcon=false hides icon wrapper', async () => {
+	const { findByTestId } = render(
+		<Image
+			src="valid-image-url"
+			showLoading={false}
+			errorIcon={false}
+			data-testid="testing-MuiImage"
+		/>,
+	);
+	const image = await findByTestId('testing-MuiImage');
+	// The MuiImageIconWrapper should not be rendered
+	const iconWrapper = image.parentElement?.querySelector('.MuiImageAlter-iconWrapper');
+	expect(iconWrapper).toBeNull();
+});
+
+test('default error icon (BrokenImageIcon) is shown when errorIcon is true', async () => {
+	const { findByTestId } = render(
+		<Image src="invalid-image-url" errorIcon={true} data-testid="testing-MuiImage" />,
+	);
+	const image = await findByTestId('testing-MuiImage');
+	fireEvent.error(image);
+
+	// The default BrokenImageIcon renders an SVG icon
+	await waitFor(() => {
+		const iconWrapper = image.parentElement?.querySelector('.MuiImageAlter-iconWrapper');
+		expect(iconWrapper).not.toBeNull();
+		const svgIcon = iconWrapper?.querySelector('svg');
+		expect(svgIcon).not.toBeNull();
+		// Both of error icon and progressbar are svg, so we need to check the role
+		expect(svgIcon?.role).not.toBe('progressbar')
+	});
+});
+
+test('loading indicator is not shown when error has occurred', async () => {
+	const { findByTestId, queryByRole } = render(
+		<Image src="invalid-image-url" showLoading={true} data-testid="testing-MuiImage" />,
+	);
+	const image = await findByTestId('testing-MuiImage');
+	fireEvent.error(image);
+
+	// After error, loading indicator should not be present
+	await waitFor(() => {
+		const progressbar = queryByRole('progressbar');
+		expect(progressbar).toBeNull();
+	});
+});
+
+test('bgColor prop is applied to wrapper', async () => {
+	const { findByTestId } = render(
+		<Image src="valid-image-url" bgColor="red" data-testid="testing-MuiImage" />,
+	);
+	const image = await findByTestId('testing-MuiImage');
+	// bgColor is injected via emotion CSS classes, so check the wrapper renders
+	expect(image.parentElement?.className).toContain('MuiImageAlter-wrapper');
+	// red is converted to rgb(255, 0, 0) by getComputedStyle
+	expect(image.parentElement).toHaveStyle('background-color: rgb(255, 0, 0)');
+});
+
+test('wrapperStyle and iconWrapperStyle are applied', async () => {
+	const { findByTestId } = render(
+		<Image
+			src="valid-image-url"
+			wrapperStyle={{ border: '1px solid black' }}
+			iconWrapperStyle={{ padding: '10px' }}
+			showLoading={true}
+			data-testid="testing-MuiImage"
+		/>,
+	);
+	const image = await findByTestId('testing-MuiImage');
+	// wrapperStyle and iconWrapperStyle are passed as inline `style` attributes
+	expect(image.parentElement?.style.border).toBe('1px solid black');
+	const iconWrapper = image.parentElement?.querySelector('.MuiImageAlter-iconWrapper');
+	expect(iconWrapper).not.toBeNull();
+	expect((iconWrapper as HTMLElement).style.padding).toBe('10px');
+});
+
+test('alt prop defaults to empty string', async () => {
+	const { findByTestId } = render(
+		<Image src="valid-image-url" data-testid="testing-MuiImage" />,
+	);
+	const image = await findByTestId('testing-MuiImage');
+	expect(image.getAttribute('alt')).toBe('');
+});
+
+test('shift with null produces no shift styles', async () => {
+	const { findByTestId } = render(
+		<Image src="valid-image-url" shift={null} distance={100} data-testid="testing-MuiImage" />,
+	);
+	const image = await findByTestId('testing-MuiImage');
+	expect(image).not.toHaveStyle('left: 100px');
+	expect(image).not.toHaveStyle('right: 100px');
+	expect(image).not.toHaveStyle('top: 100px');
+	expect(image).not.toHaveStyle('bottom: 100px');
+});
+
+test('shift with false produces no shift styles', async () => {
+	const { findByTestId } = render(
+		<Image src="valid-image-url" shift={false} distance={100} data-testid="testing-MuiImage" />,
+	);
+	const image = await findByTestId('testing-MuiImage');
+	expect(image).not.toHaveStyle('left: 100px');
+	expect(image).not.toHaveStyle('right: 100px');
+	expect(image).not.toHaveStyle('top: 100px');
+	expect(image).not.toHaveStyle('bottom: 100px');
+});
+
+test('shiftDuration prop overrides default shift animation duration', async () => {
+	const { findByTestId } = render(
+		<Image
+			src="valid-image-url"
+			shift="left"
+			distance={100}
+			shiftDuration={500}
+			data-testid="testing-MuiImage"
+		/>,
+	);
+	const image = await findByTestId('testing-MuiImage');
+	expect(image).toHaveStyle('left: 100px');
+});
