@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.5.0](https://github.com/mddanish00/mui-image-alter/compare/v3.4.0...v3.5.0) (2026-03-21)
+
+
+### Features
+
+* update to vite v8 ([b8b853b](https://github.com/mddanish00/mui-image-alter/commit/b8b853bb24fbfda875d0fafcecb4adc568155f93))
+* use unplugin-dts instead of old plugin ([b8b853b](https://github.com/mddanish00/mui-image-alter/commit/b8b853bb24fbfda875d0fafcecb4adc568155f93))
+
 ## [3.4.0](https://github.com/mddanish00/mui-image-alter/compare/v3.3.0...v3.4.0) (2025-09-14)
 
 
