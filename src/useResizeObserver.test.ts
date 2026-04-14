@@ -34,9 +34,7 @@ afterEach(() => {
 
 test('returns undefined height and width initially', () => {
 	const observeRef = { current: document.createElement('div') };
-	const { result } = renderHook(() =>
-		useResizeObserver<HTMLDivElement>({ observeRef }),
-	);
+	const { result } = renderHook(() => useResizeObserver<HTMLDivElement>({ observeRef }));
 
 	expect(result.current.height).toBeUndefined();
 	expect(result.current.width).toBeUndefined();
@@ -53,9 +51,7 @@ test('calls observe when a valid ref is provided', () => {
 test('calls unobserve on unmount', () => {
 	const element = document.createElement('div');
 	const observeRef = { current: element };
-	const { unmount } = renderHook(() =>
-		useResizeObserver<HTMLDivElement>({ observeRef }),
-	);
+	const { unmount } = renderHook(() => useResizeObserver<HTMLDivElement>({ observeRef }));
 
 	unmount();
 
@@ -64,9 +60,7 @@ test('calls unobserve on unmount', () => {
 
 test('updates height and width when ResizeObserver fires', () => {
 	const observeRef = { current: document.createElement('div') };
-	const { result } = renderHook(() =>
-		useResizeObserver<HTMLDivElement>({ observeRef }),
-	);
+	const { result } = renderHook(() => useResizeObserver<HTMLDivElement>({ observeRef }));
 
 	act(() => {
 		resizeObserverCallback(
@@ -90,17 +84,13 @@ test('does not observe when observeRef is null', () => {
 });
 
 test('does not observe when observeRef is undefined', () => {
-	renderHook(() =>
-		useResizeObserver<HTMLDivElement>({ observeRef: undefined }),
-	);
+	renderHook(() => useResizeObserver<HTMLDivElement>({ observeRef: undefined }));
 
 	expect(mockObserve).not.toHaveBeenCalled();
 });
 
 test('does not unobserve when observeRef is null on unmount', () => {
-	const { unmount } = renderHook(() =>
-		useResizeObserver<HTMLDivElement>({ observeRef: null }),
-	);
+	const { unmount } = renderHook(() => useResizeObserver<HTMLDivElement>({ observeRef: null }));
 
 	unmount();
 
@@ -109,9 +99,7 @@ test('does not unobserve when observeRef is null on unmount', () => {
 
 test('returns the same ref that was passed in', () => {
 	const observeRef = { current: document.createElement('div') };
-	const { result } = renderHook(() =>
-		useResizeObserver<HTMLDivElement>({ observeRef }),
-	);
+	const { result } = renderHook(() => useResizeObserver<HTMLDivElement>({ observeRef }));
 
 	expect(result.current.ref).toBe(observeRef);
 });

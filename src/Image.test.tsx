@@ -181,7 +181,7 @@ test('default error icon (BrokenImageIcon) is shown when errorIcon is true', asy
 		const svgIcon = iconWrapper?.querySelector('svg');
 		expect(svgIcon).not.toBeNull();
 		// Both of error icon and progressbar are svg, so we need to check the role
-		expect(svgIcon?.role).not.toBe('progressbar')
+		expect(svgIcon?.role).not.toBe('progressbar');
 	});
 });
 
@@ -229,9 +229,7 @@ test('wrapperStyle and iconWrapperStyle are applied', async () => {
 });
 
 test('alt prop defaults to empty string', async () => {
-	const { findByTestId } = render(
-		<Image src="valid-image-url" data-testid="testing-MuiImage" />,
-	);
+	const { findByTestId } = render(<Image src="valid-image-url" data-testid="testing-MuiImage" />);
 	const image = await findByTestId('testing-MuiImage');
 	expect(image.getAttribute('alt')).toBe('');
 });
