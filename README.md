@@ -53,7 +53,7 @@ To put it simply, you only needed this if:
   - Rewritten fully in Typescript with types built-in based on MUI component types.
   - Add support to MUI's component prop; That means you can substitute the component root element with `Image` from `next/image` if you want. Components supported are `img`, `img`-derived HTML element and component with `src` prop.
   - Properly export esm and cjs build via package.json exports.
-  - (NEW) Support for MUI v6 added.
+  - (NEW) Support for MUI v6, v7, v9 added.
 
 - Development Changes
   - Use Vite instead of nwb for development and building the library for fast and better developer experience for me!
@@ -122,7 +122,7 @@ import { Image } from 'mui-image-alter';
 
 ### 3. Profit 💰
 
-_Note: Profits not guaranteed and Material UI v5 or v6 is a peer dependency. If you need to support legacy versions of Material UI, use [`material-ui-image`](https://github.com/TeamWertarbyte/material-ui-image) instead. See the [comparison chart](#comparison-with-similar-components) below for more._
+_Note: Profits not guaranteed and Material UI v5, v6, v7 or v9 is a peer dependency. If you need to support legacy versions of Material UI, use [`material-ui-image`](https://github.com/TeamWertarbyte/material-ui-image) instead. See the [comparison chart](#comparison-with-similar-components) below for more._
 
 ## Usage Examples
 
