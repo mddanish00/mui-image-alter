@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.6.0](https://github.com/mddanish00/mui-image-alter/compare/v3.5.0...v3.6.0) (2026-04-14)
+
+
+### Features
+
+* update MUI to v9 ([e2f303f](https://github.com/mddanish00/mui-image-alter/commit/e2f303fb10e9e7d2ec8cd7276ea026507fe41bca))
+* update to TypeScript v6 ([3c66a38](https://github.com/mddanish00/mui-image-alter/commit/3c66a38d29348cb9d695a2b0e39bc105d6cd3696))
+
 ## [3.5.0](https://github.com/mddanish00/mui-image-alter/compare/v3.4.0...v3.5.0) (2026-03-21)
 
 
