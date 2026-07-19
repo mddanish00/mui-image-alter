@@ -1,0 +1,13 @@
+{
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"tabWidth": 2,
+	"useTabs": true,
+	"printWidth": 100,
+	"bracketSpacing": true,
+	"jsxSingleQuote": false,
+	"singleQuote": true,
+	"semi": true,
+	"trailingComma": "all",
+	"sortPackageJson": false,
+	"ignorePatterns": ["README.md", "CHANGELOG.md"]
+}
