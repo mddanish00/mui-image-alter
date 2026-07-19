@@ -26,6 +26,7 @@
 		"build:demo": "vite --config vite.democonfig.ts build",
 		"preview": "vite preview",
 		"size": "size-limit",
+		"lint": "oxlint --deny-warnings",
 		"format": "oxfmt",
 		"format:check": "oxfmt --check",
 		"clean": "rimraf dist es lib umd coverage jest-setup.d.ts mui-image-alter-*",
