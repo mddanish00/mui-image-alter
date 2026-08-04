@@ -19,13 +19,14 @@ const useResizeObserver = <T extends Element>({
 	}, []);
 
 	React.useEffect(() => {
-		if (observeRef && observeRef.current && hookResizeObserverRef.current) {
-			hookResizeObserverRef.current.observe(observeRef.current);
+		let currentObserver = observeRef?.current;
+		if (observeRef && currentObserver && hookResizeObserverRef.current) {
+			hookResizeObserverRef.current.observe(currentObserver);
 		}
 
 		return () => {
-			if (observeRef && observeRef.current && hookResizeObserverRef.current) {
-				hookResizeObserverRef.current.unobserve(observeRef.current);
+			if (observeRef && currentObserver && hookResizeObserverRef.current) {
+				hookResizeObserverRef.current.unobserve(currentObserver);
 			}
 		};
 	}, [observeRef]);

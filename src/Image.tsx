@@ -35,7 +35,7 @@ const Image = React.forwardRef(
 			errorIcon = true,
 			shift = false,
 			distance = 100,
-			shiftDuration = undefined,
+			shiftDuration,
 			bgColor = 'inherit',
 			wrapperStyle,
 			iconWrapperStyle,
@@ -175,9 +175,9 @@ const MuiImageRoot = React.memo(
 		},
 		position: props.position,
 		objectFit: props.fit,
-		transitionProperty: `${Boolean(props.shift) ? `${props.shift}, ` : ''}opacity`,
+		transitionProperty: `${props.shift ? `${props.shift}, ` : ''}opacity`,
 		transitionDuration: `${
-			Boolean(props.shift) ? `${props.shiftDuration || props.duration * 0.3}ms, ` : ''
+			props.shift ? `${props.shiftDuration || props.duration * 0.3}ms, ` : ''
 		}${props.duration / 2}ms`,
 		transitionTimingFunction: props.easing,
 		opacity: props.loaded ? 1 : 0,

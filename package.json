@@ -27,7 +27,7 @@
 		"preview": "vite preview",
 		"size": "size-limit",
 		"lint": "oxlint",
-    	"lint:fix": "oxlint --fix",
+		"lint:fix": "oxlint --fix",
 		"format": "oxfmt",
 		"format:check": "oxfmt --check",
 		"clean": "rimraf dist es lib umd coverage jest-setup.d.ts mui-image-alter-*",
