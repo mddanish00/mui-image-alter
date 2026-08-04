@@ -12,7 +12,7 @@ export default defineConfig({
 	publicDir: false,
 	build: {
 		lib: {
-			entry: resolve(__dirname, 'src/index.ts'),
+			entry: resolve(import.meta.dirname, 'src/index.ts'),
 			name: 'mui-image-alter',
 			fileName: 'index',
 			formats: ['es', 'cjs'],
